@@ -69,13 +69,12 @@ public class Login extends HttpServlet {
 			System.out.println(r);
 			Auth req = gson.fromJson(r, Auth.class);
 			r = gson.toJson(req);
-			System.out.println(req.getHash());
+			System.out.println(req.getType());
 
-			if (worker.verifyLogin(req.getUsername(), req.getPassword())) {
-				root.put("message", "Logged In!");
+			if (worker.verifyLogin(req.getType(), req.getCode())) {
+				root.put("message", "accepted");
 			} else {
-				root.put("message", "Invalid Credentials!");
-
+				root.put("message", "denied");
 			}
 
 			/* Get the template */

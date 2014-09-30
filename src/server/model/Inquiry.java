@@ -5,12 +5,14 @@ import java.util.ArrayList;
 public class Inquiry {
 	private int id;
 	private String body;
-	private ArrayList<String> choices;
+	private ArrayList<String> questions;
+	private ArrayList<String> actions;
 
-	public Inquiry(String body, ArrayList<String> choices) {
+	public Inquiry(String body, ArrayList<String> questions, ArrayList<String> actions) {
 
 		this.body = body;
-		this.choices = choices;
+		this.questions = questions;
+		this.actions = actions;
 	}
 
 	public int getId() {
@@ -29,20 +31,36 @@ public class Inquiry {
 		this.body = body;
 	}
 
-	public ArrayList<String> getChoices() {
-		return choices;
+	public ArrayList<String> getQuestions() {
+		return questions;
 	}
 
-	public void setChoices(ArrayList<String> choices) {
-		this.choices = choices;
+	public void setQuestions(ArrayList<String> questions) {
+		this.questions = questions;
 	}
 
-	public void addChoice(String choice) {
-		if (this.choices == null) {
-			this.choices = new ArrayList<String>();
+	public void addQuestion(String question) {
+		if (this.questions == null) {
+			this.questions = new ArrayList<String>();
 		} else {
-			this.choices.add(choice);
+			this.questions.add(question);
 
+		}
+	}
+	public ArrayList<String> getActions() {
+		return actions;
+	}
+	
+	public void setActions(ArrayList<String> actions) {
+		this.actions = actions;
+	}
+	
+	public void addAction(String action) {
+		if (this.actions == null) {
+			this.actions = new ArrayList<String>();
+		} else {
+			this.actions.add(action);
+			
 		}
 	}
 
