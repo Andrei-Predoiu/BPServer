@@ -1,12 +1,22 @@
 package server;
 
+import java.util.Set;
+
+import server.loader.KnowledgeParser;
+import server.model.serverKnowledge.QASet;
+
 public class DataManipulator {
 	private static DataManipulator instance = null;
-
+	private KnowledgeParser knowledgeLoader;
+	private QASet knowledgeBase;
 	private boolean phoneConnect = false;
 	private boolean glassConnect = false;
+	private boolean startReady = false;
+	private Set<Integer> knowns;
 
 	private DataManipulator() {
+		knowledgeLoader = new KnowledgeParser();
+		knowledgeBase = knowledgeLoader.getKnowlegeBase();
 	}
 
 	public synchronized static DataManipulator getInstance() {
@@ -28,9 +38,15 @@ public class DataManipulator {
 		return false;
 	}
 
-	public synchronized boolean start() {
-		if (phoneConnect && glassConnect)
-			return true;
-		return false;
+	public synchronized String start() {
+		String message;
+		if (glassConnect) {
+			startReady = true;
+			knowns.clear();
+			message = "accepted";
+		} else {
+			message = "connect glasses";
+		}
+		return message;
 	}
 }

@@ -1,7 +1,16 @@
-package server.model;
+package server.model.clientKnowledge;
 
 public class Answer {
 	private int id;
+	private String choice;
+
+	public String getChoice() {
+		return choice;
+	}
+
+	public void setChoice(String choice) {
+		this.choice = choice;
+	}
 
 	public int getId() {
 		return id;

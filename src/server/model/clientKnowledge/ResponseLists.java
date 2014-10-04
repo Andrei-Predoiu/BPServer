@@ -1,14 +1,15 @@
-package server.model;
+package server.model.clientKnowledge;
 
 import java.util.ArrayList;
 
-public class Inquiry {
+public class ResponseLists {
 	private int id;
 	private String body;
 	private ArrayList<String> questions;
 	private ArrayList<String> actions;
 
-	public Inquiry(String body, ArrayList<String> questions, ArrayList<String> actions) {
+	public ResponseLists(String body, ArrayList<String> questions,
+			ArrayList<String> actions) {
 
 		this.body = body;
 		this.questions = questions;
@@ -20,7 +21,7 @@ public class Inquiry {
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.id = id; 
 	}
 
 	public String getBody() {
@@ -47,21 +48,21 @@ public class Inquiry {
 
 		}
 	}
+
 	public ArrayList<String> getActions() {
 		return actions;
 	}
-	
+
 	public void setActions(ArrayList<String> actions) {
 		this.actions = actions;
 	}
-	
+
 	public void addAction(String action) {
 		if (this.actions == null) {
 			this.actions = new ArrayList<String>();
 		} else {
 			this.actions.add(action);
-			
+
 		}
 	}
-
 }
