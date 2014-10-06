@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Set;
 
 import server.loader.KnowledgeParser;
-import server.model.serverKnowledge.QASet;
+import server.model.ClientQuestionOrAction;
 import server.model.serverKnowledge.QuestionOrAction;
 
 public class DataManipulator {
@@ -52,12 +52,13 @@ public class DataManipulator {
 		return message;
 	}
 
-	public synchronized ArrayList<QuestionOrAction> buildResonse(int answerId) {
-		ArrayList<QuestionOrAction> result = new ArrayList<QuestionOrAction>();
+	public synchronized ArrayList<ClientQuestionOrAction> buildResonse(
+			int answerId) {
+		ArrayList<ClientQuestionOrAction> result = new ArrayList<ClientQuestionOrAction>();
 		knowns.add(answerId);
 		for (int i = 0; i < knowledgeBase.size(); i++) {
 			if (!knowns.contains(knowledgeBase.get(i).getId())) {
-				result.add(knowledgeBase.get(i));
+				result.add(new ClientQuestionOrAction(knowledgeBase.get(i)));
 			}
 		}
 		return result;
