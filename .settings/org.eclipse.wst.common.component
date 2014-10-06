@@ -3,7 +3,7 @@
         <wb-resource deploy-path="/" source-path="/WebContent"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/" source-path="/appClientModule" tag="defaultRootSource"/>
-        <property name="context-root" value="BPServer"/>
         <property name="java-output-path" value="/BPServer/bin"/>
+        <property name="context-root" value="BPServer"/>
     </wb-module>
 </project-modules>
