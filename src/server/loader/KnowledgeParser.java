@@ -2,9 +2,11 @@ package server.loader;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 import server.model.serverKnowledge.QASet;
+import server.model.serverKnowledge.QuestionOrAction;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -38,8 +40,8 @@ public class KnowledgeParser {
 		return knowlegeBase;
 	}
 
-	public void setKnowlegeBase(QASet knowlegeBase) {
-		this.knowlegeBase = knowlegeBase;
+	public ArrayList<QuestionOrAction> getKnowlegeBaseArray() {
+		return knowlegeBase.getQuestionOrActionList();
 	}
 
 }

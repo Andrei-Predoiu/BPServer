@@ -1,14 +1,16 @@
 package server;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 import server.loader.KnowledgeParser;
 import server.model.serverKnowledge.QASet;
+import server.model.serverKnowledge.QuestionOrAction;
 
 public class DataManipulator {
 	private static DataManipulator instance = null;
 	private KnowledgeParser knowledgeLoader;
-	private QASet knowledgeBase;
+	private ArrayList<QuestionOrAction> knowledgeBase;
 	private boolean phoneConnect = false;
 	private boolean glassConnect = false;
 	private boolean startReady = false;
@@ -16,7 +18,7 @@ public class DataManipulator {
 
 	private DataManipulator() {
 		knowledgeLoader = new KnowledgeParser();
-		knowledgeBase = knowledgeLoader.getKnowlegeBase();
+		knowledgeBase = knowledgeLoader.getKnowlegeBaseArray();
 	}
 
 	public synchronized static DataManipulator getInstance() {
@@ -48,5 +50,16 @@ public class DataManipulator {
 			message = "connect glasses";
 		}
 		return message;
+	}
+
+	public synchronized ArrayList<QuestionOrAction> buildResonse(int answerId) {
+		ArrayList<QuestionOrAction> result = new ArrayList<QuestionOrAction>();
+		knowns.add(answerId);
+		for (int i = 0; i < knowledgeBase.size(); i++) {
+			if (!knowns.contains(knowledgeBase.get(i).getId())) {
+				result.add(knowledgeBase.get(i));
+			}
+		}
+		return result;
 	}
 }

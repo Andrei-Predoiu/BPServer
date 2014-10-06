@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import server.DataManipulator;
 import server.FreemarkerConfig;
-import server.model.Auth;
+import server.model.LoginData;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -67,7 +67,7 @@ public class Login extends HttpServlet {
 			System.out.println(sc.getRealPath(getServletName()));
 			String r = request.getParameter("report");
 			System.out.println(r);
-			Auth req = gson.fromJson(r, Auth.class);
+			LoginData req = gson.fromJson(r, LoginData.class);
 			r = gson.toJson(req);
 			System.out.println(req.getType());
 

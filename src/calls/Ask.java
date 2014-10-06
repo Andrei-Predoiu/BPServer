@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import server.DataManipulator;
 import server.FreemarkerConfig;
-import server.model.Auth;
+import server.model.Answer;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -27,8 +27,8 @@ import freemarker.template.TemplateException;
 /**
  * Servlet implementation class OrderServlet
  */
-@WebServlet(name = "SynchClient", urlPatterns = { "/synch" })
-public class SynchClient extends HttpServlet {
+@WebServlet(name = "SynchClient", urlPatterns = { "/ask" })
+public class Ask extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Gson gson = new GsonBuilder().create();
 
@@ -38,7 +38,7 @@ public class SynchClient extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public SynchClient() {
+	public Ask() {
 		super();
 	}
 
@@ -65,21 +65,16 @@ public class SynchClient extends HttpServlet {
 
 			ServletContext sc = this.getServletContext();
 			System.out.println(sc.getRealPath(getServletName()));
-			String r = request.getParameter("report");
+			String r = request.getParameter("message");
 			System.out.println(r);
-			Auth req = gson.fromJson(r, Auth.class);
+			Answer req = gson.fromJson(r, Answer.class);
 			r = gson.toJson(req);
 			System.out.println(r);
 
-			if (!worker.verifyLogin(req.getUsername(), req.getPassword())) {
-				// worker.newUser(req.getHash());
-				root.put("message", "Invalid User and Password combination!");
-			} else {
+			root.put("variants", worker.buildResonse(req.getId()));
+			/* Get the template */
 
-				root.put("areas", worker.getAreas(req.getUsername()));
-				/* Get the template */
-			}
-			Template temp = cfg.getTemplate("areas.ftl");
+			Template temp = cfg.getTemplate("qaListResponse.ftl");
 
 			/* Merge data-model with template */
 			try {
