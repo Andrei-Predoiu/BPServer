@@ -57,8 +57,16 @@ public class DataManipulator {
 		ArrayList<ClientQuestionOrAction> result = new ArrayList<ClientQuestionOrAction>();
 		knowns.add(answerId);
 		for (int i = 0; i < knowledgeBase.size(); i++) {
-			if (!knowns.contains(knowledgeBase.get(i).getId())) {
-				result.add(new ClientQuestionOrAction(knowledgeBase.get(i)));
+			QuestionOrAction tmp = knowledgeBase.get(i);
+
+			if (!knowns.contains(tmp.getId())) {
+				for (int j = 0; j < tmp.getPrerequisites().size(); j++) {
+					if (!knowns.contains(tmp.getPrerequisites().get(j)))
+						break;
+					if (j + 1 == tmp.getPrerequisites().size()) {
+						result.add(new ClientQuestionOrAction(tmp));
+					}
+				}
 			}
 		}
 		return result;
