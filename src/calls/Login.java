@@ -26,69 +26,68 @@ import freemarker.template.TemplateException;
 /**
  * Servlet implementation class OrderServlet
  */
-@WebServlet(urlPatterns = { "/login" })
+@WebServlet(urlPatterns = {"/login"})
 public class Login extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	Gson gson = new GsonBuilder().create();
 
-	private Configuration cfg = FreemarkerConfig.getInstance();
-	DataManipulator worker = DataManipulator.getInstance();
+    private static final long serialVersionUID = 1L;
+    Gson gson = new GsonBuilder().create();
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public Login() {
-		super();
-	}
+    private Configuration cfg = FreemarkerConfig.getInstance();
+    DataManipulator worker = DataManipulator.getInstance();
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Login() {
+        super();
+    }
 
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-	}
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+     * response)
+     */
+    protected void doGet(HttpServletRequest request,
+            HttpServletResponse response) throws ServletException, IOException {
+    }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+     * response)
+     */
+    protected void doPost(HttpServletRequest request,
+            HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text;charset=UTF-8");
+        PrintWriter writer = response.getWriter();
+        Map<String, String> root = new HashMap<String, String>();
+        root.put("message", "failed");
+        try {
 
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text;charset=UTF-8");
-		PrintWriter writer = response.getWriter();
-		Map<String, String> root = new HashMap<String, String>();
-		root.put("message", "failed");
-		try {
+            ServletContext sc = this.getServletContext();
+            System.out.println(sc.getRealPath(getServletName()));
+            String r = request.getParameter("report");
+            System.out.println(r);
+            LoginData req = gson.fromJson(r, LoginData.class);
+            r = gson.toJson(req);
+            System.out.println(req.getType());
 
-			ServletContext sc = this.getServletContext();
-			System.out.println(sc.getRealPath(getServletName()));
-			String r = request.getParameter("report");
-			System.out.println(r);
-			LoginData req = gson.fromJson(r, LoginData.class);
-			r = gson.toJson(req);
-			System.out.println(req.getType());
+            if (worker.verifyLogin(req.getType(), req.getCode())) {
+                root.put("message", "accepted");
+            } else {
+                root.put("message", "denied");
+            }
 
-			if (worker.verifyLogin(req.getType(), req.getCode())) {
-				root.put("message", "accepted");
-			} else {
-				root.put("message", "denied");
-			}
+            /* Get the template */
+            Template temp = cfg.getTemplate("response.ftl");
 
-			/* Get the template */
-			Template temp = cfg.getTemplate("response.ftl");
+            /* Merge data-model with template */
+            try {
+                temp.process(root, writer);
+            } catch (TemplateException e) {
+                e.printStackTrace();
+            }
+        } finally {
+            writer.close();
+        }
 
-			/* Merge data-model with template */
-			try {
-				temp.process(root, writer);
-			} catch (TemplateException e) {
-				e.printStackTrace();
-			}
-		} finally {
-			writer.close();
-		}
-
-	}
+    }
 }

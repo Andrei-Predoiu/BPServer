@@ -10,38 +10,45 @@ import server.model.serverKnowledge.QuestionOrAction;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
+import java.io.IOException;
+import java.nio.charset.Charset;
 
 public class KnowledgeParser {
-	private List<String> lines;
-	private Gson gson = new GsonBuilder().create();
-	private String kbs = "";
-	private QASet knowlegeBase;
 
-	public KnowledgeParser() {
-		try {
-			lines = Files
-					.readAllLines(Paths
-							.get("D:\\Work\\git\\BPServer\\MSS\\WebContent\\WEB-INF\\knowledge\\kb.json"));
+    private List<String> lines;
+    private Gson gson = new GsonBuilder().create();
+    private String kbs = "";
+    private QASet knowlegeBase;
 
-			System.out
-					.println("LOADED KNOWLEDGE BASE, SHOULD BE DONE ONLY ONCE!!!!");
-			int length = lines.size();
-			for (int i = 0; i < length; i++) {
-				kbs += lines.get(i);
-			}
-			knowlegeBase = gson.fromJson(kbs, QASet.class);
-		} catch (Exception e) {
-			System.out.println("CAN'T LOAD KNOWLEDGE BASE!!!!");
-			e.printStackTrace();
-		}
-	}
+    public KnowledgeParser() {
+        this.knowlegeBase = new QASet();
+        try {
+            lines = Files.readAllLines(
+                    Paths.get("C:\\ServerModel\\knowledge\\kb.json"),
+                    Charset.defaultCharset());
 
-	public QASet getKnowlegeBase() {
-		return knowlegeBase;
-	}
+            int length = lines.size();
+            for (int i = 0; i < length; i++) {
+                kbs += lines.get(i);
+            }
+            knowlegeBase.setQuestionOrActionList(gson.fromJson(kbs, new TypeToken<List<QuestionOrAction>>() {
+            }.getType()));
+        } catch (IOException | JsonSyntaxException e) {
+            System.out.println(kbs + "\nCAN'T LOAD KNOWLEDGE BASE!!!!");
+            e.printStackTrace();
+        }
+        System.out
+                .println("LOADED KNOWLEDGE BASE, SHOULD BE DONE ONLY ONCE!!!!");
+    }
 
-	public ArrayList<QuestionOrAction> getKnowlegeBaseArray() {
-		return knowlegeBase.getQuestionOrActionList();
-	}
+    public QASet getKnowlegeBase() {
+        return knowlegeBase;
+    }
+
+    public ArrayList<QuestionOrAction> getKnowlegeBaseArray() {
+        return knowlegeBase.getQuestionOrActionList();
+    }
 
 }
