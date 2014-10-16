@@ -11,12 +11,12 @@ import server.model.serverKnowledge.QuestionOrAction;
 public class DataManipulator {
 
     private static DataManipulator instance = null;
-    private KnowledgeParser knowledgeLoader;
-    private ArrayList<QuestionOrAction> knowledgeBase;
+    private final KnowledgeParser knowledgeLoader;
+    private final ArrayList<QuestionOrAction> knowledgeBase;
     private boolean phoneConnect = false;
     private boolean glassConnect = false;
     private boolean startReady = false;
-    private Set<Integer> knowns;
+    private final Set<Integer> knowns;
 
     private DataManipulator() {
         knowledgeLoader = new KnowledgeParser();
@@ -67,15 +67,40 @@ public class DataManipulator {
     public synchronized ArrayList<ClientQuestionOrAction> buildResonse(
             int answerId) {
         ArrayList<ClientQuestionOrAction> result = new ArrayList<>();
-        knowns.add(answerId);
-        for (QuestionOrAction tmp : knowledgeBase) {
-            if (!knowns.contains(tmp.getId())) {
-                for (int j = 0; j < tmp.getPrerequisites().size(); j++) {
-                    if (!knowns.contains(tmp.getPrerequisites().get(j))) {
-                        break;
-                    }
-                    if (j + 1 == tmp.getPrerequisites().size()) {
-                        result.add(new ClientQuestionOrAction(tmp));
+        if (true /*startReady*/) {
+            boolean skip = false;
+            if (knowns.isEmpty()) {
+                if (answerId != -1) {
+                    skip = true;
+                } else {
+                    System.out.println("Got -1 and list is empty, giving starting batch!\nKnowns size:" + knowns.size() + "\nskip is: " + skip);
+                }
+            }
+            //To be removed start
+            String tempOutout = "";
+            for (int x : knowns) {
+                tempOutout += x + ", ";
+            }
+            System.out.println("Knowns:\n" + tempOutout);
+            //To be removed stop
+
+            if (!skip) {
+                knowns.add(answerId);
+                System.out.println("added id: " + answerId);
+                for (QuestionOrAction tmp : knowledgeBase) {
+                    if (!knowns.contains(tmp.getId())) {
+                        if (tmp.getPrerequisites().size() > 0) {
+                            for (int j = 0; j < tmp.getPrerequisites().size(); j++) {
+                                if (!knowns.contains(tmp.getPrerequisites().get(j))) {
+                                    break;
+                                }
+                                if (j == tmp.getPrerequisites().size() - 1) {
+                                    result.add(new ClientQuestionOrAction(tmp));
+                                }
+                            }
+                        } else {
+                            result.add(new ClientQuestionOrAction(tmp));
+                        }
                     }
                 }
             }

@@ -5,10 +5,13 @@
         "relevant": "true",
         "type": "inquiry",
         "bodies": [
-            "Hello my name is  ….I am a nurse student. How are you today?"
+            "0:Hello my name is ... .I am a nurse student. How are you today?",
+            "1:Hello my name is ... .I am a nurse student. How are you today?",
+            "2:Hello my name is ... .I am a nurse student. How are you today?",
+            "3:Hello my name is ... .I am a nurse student. How are you today?"
         ],
         "replies": [
-            "I cannot understand that my legs are so heavy and feeling tight. My shoes are to tight especially in the evening. ",
+            "I cannot understand why my legs are so heavy and feeling tight. My shoes are to tight especially in the evening. ",
             "My legs always get heavy during the day but during my stay in hospital – it has become worse",
             "My feet and legs are sore but I don’t have pain"
         ]
@@ -84,8 +87,8 @@
         "relevant": "true",
         "type": "inquiry",
         "bodies": [
-            "Have you had any activity today?",
-            "Did you have any activity today?"
+            "0:Have you had any activity today?",
+            "1:Did you have any activity today?"
         ],
         "replies": [
             "I am very tired and I am short of breath so I have been resting in this chair for several hours"
