@@ -20,7 +20,7 @@ public class FreemarkerConfig {
         // Here I set a plain directory for it, but non-file-system are possible too:
         try {
             cfg.setDirectoryForTemplateLoading(new File(
-                    "C:\\ServerModel\\templates"));
+                    "D:\\Apps\\Workplace_oracle\\BPServer\\WebContent\\WEB-INF\\templates"));
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

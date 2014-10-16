@@ -30,12 +30,14 @@ public class DataManipulator {
     }
 
     public synchronized boolean verifyLogin(String type, String code) {
-        if (!code.equals("secret")) {
-            if (type.equals("phone") || !phoneConnect) {
+        System.out.println("phoneConnect: " + phoneConnect + "\nglassConnect: " + glassConnect + "\ncode: " + code + "\n______________________________");
+        if (code.equals("secret")) {
+            System.out.println("Code was correct!");
+            if (type.equals("phone") && !phoneConnect) {
                 phoneConnect = true;
                 return true;
             }
-            if (type.equals("glasses") || !glassConnect) {
+            if (type.equals("glasses") && !glassConnect) {
                 glassConnect = true;
                 return true;
             }
@@ -57,11 +59,9 @@ public class DataManipulator {
 
     public synchronized ArrayList<ClientQuestionOrAction> buildResonse(
             int answerId) {
-        ArrayList<ClientQuestionOrAction> result = new ArrayList<ClientQuestionOrAction>();
+        ArrayList<ClientQuestionOrAction> result = new ArrayList<>();
         knowns.add(answerId);
-        for (int i = 0; i < knowledgeBase.size(); i++) {
-            QuestionOrAction tmp = knowledgeBase.get(i);
-
+        for (QuestionOrAction tmp : knowledgeBase) {
             if (!knowns.contains(tmp.getId())) {
                 for (int j = 0; j < tmp.getPrerequisites().size(); j++) {
                     if (!knowns.contains(tmp.getPrerequisites().get(j))) {

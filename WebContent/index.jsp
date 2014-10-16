@@ -8,11 +8,11 @@
 
         <form method="post" id="submit_form">
             <input type="submit" value="Submit" id="submit_btn" /> <input
-                name="label" value="/ask" id="target" />
+                name="label" value="/login" id="target" />
         </form>
-        <form action="/BPServer/ask" method="post" id="secret_form">
+        <form action="/BPServer/login" method="post" id="secret_form">
         </form>
-        <textarea name="report" cols="80" rows="30" form="secret_form">
+        <textarea name="message" cols="80" rows="30" form="secret_form">
 {
             "type" : "phone",
             "code" : "secret"      

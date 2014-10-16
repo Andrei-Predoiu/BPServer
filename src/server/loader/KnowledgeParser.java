@@ -26,7 +26,7 @@ public class KnowledgeParser {
         this.knowlegeBase = new QASet();
         try {
             lines = Files.readAllLines(
-                    Paths.get("C:\\ServerModel\\knowledge\\kb.json"),
+                    Paths.get("D:\\Apps\\Workplace_oracle\\BPServer\\WebContent\\WEB-INF\\knowledge\\kb.json"),
                     Charset.defaultCharset());
 
             int length = lines.size();

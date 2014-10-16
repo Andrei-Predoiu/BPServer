@@ -63,12 +63,11 @@ public class Login extends HttpServlet {
         try {
 
             ServletContext sc = this.getServletContext();
-            System.out.println(sc.getRealPath(getServletName()));
-            String r = request.getParameter("report");
-            System.out.println(r);
+            String r = request.getParameter("message");
+            System.out.println("login call Raw data:\n" + r + "\n__________________________________________");
             LoginData req = gson.fromJson(r, LoginData.class);
             r = gson.toJson(req);
-            System.out.println(req.getType());
+            System.out.println("Login recieved:\nType: " + req.getType() + "\nCode: " + req.getCode() + "\n__________________________________________");
 
             if (worker.verifyLogin(req.getType(), req.getCode())) {
                 root.put("message", "accepted");

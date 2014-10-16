@@ -1,0 +1,214 @@
+ [
+    {
+        "id": "0",
+        "prerequisites": [],
+        "relevant": "true",
+        "type": "inquiry",
+        "bodies": [
+            "Hello my name is  ….I am a nurse student. How are you today?"
+        ],
+        "replies": [
+            "I cannot understand that my legs are so heavy and feeling tight. My shoes are to tight especially in the evening. ",
+            "My legs always get heavy during the day but during my stay in hospital – it has become worse",
+            "My feet and legs are sore but I don’t have pain"
+        ]
+    },
+    {
+        "id": "1",
+        "prerequisites": [
+            0
+        ],
+        "relevant": "true",
+        "type": "inquiry",
+        "bodies": [
+            "Is it something new that your legs get heavy?",
+            "Have you experienced before that your leg get heavy?"
+        ],
+        "replies": [
+            "My legs always get heavy during the day",
+            "My legs always get heavy during the day but during my stay in hospital – it has become worse"
+        ]
+    },
+    {
+        "id": "2",
+        "prerequisites": [
+            1
+        ],
+        "relevant": "true",
+        "type": "inquiry",
+        "bodies": [
+            "Do you have any pain in your feet or legs? ",
+            "Do your feet hurt?",
+            "Does the swelling hurt?"
+        ],
+        "replies": [
+            "My feet and legs are sore but I don’t have pain",
+            "No, my legs don't hurt, but they are sore all the time"
+        ]
+    },
+    {
+        "id": "3",
+        "prerequisites": [
+            0
+        ],
+        "relevant": "true",
+        "type": "action",
+        "bodies": [
+            "May I take off your shoes and socks?",
+            "I will take off your shoes and socks now."
+        ],
+        "replies": [
+            "Ok, but i can't help you, my feet are too stiff",
+            "Go ahead"
+        ]
+    },
+    {
+        "id": "4",
+        "prerequisites": [
+            0
+        ],
+        "relevant": "true",
+        "type": "inquiry",
+        "bodies": [
+            "Can you lift your leg up?",
+            "Will you lift your leg please."
+        ],
+        "replies": [
+            "My feet are so heavy, and I quickly lose my breath",
+            "I can barely lift my leg on my own"
+        ]
+    },
+    {
+        "id": "5",
+        "prerequisites": [],
+        "relevant": "true",
+        "type": "inquiry",
+        "bodies": [
+            "Have you had any activity today?",
+            "Did you have any activity today?"
+        ],
+        "replies": [
+            "I am very tired and I am short of breath so I have been resting in this chair for several hours"
+        ]
+    },
+    {
+        "id": "6",
+        "prerequisites": [
+            1
+        ],
+        "relevant": "true",
+        "type": "inquiry",
+        "bodies": [
+            "Could you go for a walk with me now?"
+        ],
+        "replies": [
+            "No, I haven’t got my breath right now, but I would like to go for a walk later"
+        ]
+    },
+    {
+        "id": "7",
+        "prerequisites": [
+            1
+        ],
+        "relevant": "true",
+        "type": "action",
+        "bodies": [
+            "Could you put your legs on this stool?"
+        ],
+        "replies": [
+            "No, I can't do it alone, can you please help me?"
+        ]
+    },
+    {
+        "id": "8",
+        "prerequisites": [
+            3
+        ],
+        "relevant": "true",
+        "type": "action",
+        "bodies": [
+            "Do you mind if i examine the leg?"
+        ],
+        "replies": [
+            "It's fine, go ahead"
+        ]
+    },
+    {
+        "id": "9",
+        "prerequisites": [
+            7,
+            8,
+            3
+        ],
+        "relevant": "true",
+        "type": "statement",
+        "bodies": [
+            "I would like to perform an exercise to activate the blood flow in the leg but first i have to inform you how it works"
+        ],
+        "replies": [
+            "10"
+        ]
+    },
+    {
+        "id": "10",
+        "prerequisites": [
+            9
+        ],
+        "relevant": "true",
+        "type": "question",
+        "bodies": [
+            "I would like to know more about this process."
+        ],
+        "choices": [
+            {
+                "id": "0",
+                "correct": "true",
+                "body": "It's a technique designed to enable blood flow in the legs"
+            },
+            {
+                "id": "1",
+                "correct": "true",
+                "body": "It works by combining deep breathing with ankle movement"
+            },
+            {
+                "id": "2",
+                "correct": "true",
+                "body": "You will have to start taking deep, continuous breaths and i will be stretching and relaxing your ankle"
+            },
+            {
+                "id": "2",
+                "correct": "true",
+                "body": "You should try doing this at home regularly when you have no activity"
+            }
+        ]
+    },
+    {
+        "id": "12",
+        "prerequisites": [
+            2,
+            8
+        ],
+        "relevant": "true",
+        "type": "question",
+        "bodies": [
+            "I would like to know more about my illness."
+        ],
+        "choices": [
+            {
+                "id": "0",
+                "correct": "true",
+                "body": "It's caused by accumulated blood in the legs"
+            },
+            {
+                "id": "1",
+                "correct": "true",
+                "body": "Bad circulation is accentuated by the lack of exercise and muscle activity"
+            },
+            {
+                "id": "2",
+                "correct": "true",
+                "body": "You need to exercise every day in order to avoid swollen legs"
+            }
+        ]
+    }
+]
