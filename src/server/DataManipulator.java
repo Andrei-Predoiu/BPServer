@@ -1,6 +1,7 @@
 package server;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 import server.loader.KnowledgeParser;
@@ -20,6 +21,7 @@ public class DataManipulator {
     private DataManipulator() {
         knowledgeLoader = new KnowledgeParser();
         knowledgeBase = knowledgeLoader.getKnowlegeBaseArray();
+        knowns = new HashSet();
     }
 
     public synchronized static DataManipulator getInstance() {
@@ -46,13 +48,18 @@ public class DataManipulator {
     }
 
     public synchronized String start() {
+        System.out.println("phoneConnect: " + phoneConnect + "\nglassConnect: " + glassConnect + "\n______________________________");
         String message;
-        if (glassConnect) {
-            startReady = true;
-            knowns.clear();
-            message = "accepted";
+        if (phoneConnect) {
+            if (glassConnect) {
+                startReady = true;
+                knowns.clear();
+                message = "accepted";
+            } else {
+                message = "Connect glasses";
+            }
         } else {
-            message = "connect glasses";
+            message = "Connect phone";
         }
         return message;
     }

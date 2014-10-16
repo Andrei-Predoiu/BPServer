@@ -66,7 +66,6 @@ public class Start extends HttpServlet {
 		try {
 
 			ServletContext sc = this.getServletContext();
-			System.out.println(sc.getRealPath(getServletName()));
 			String r = request.getParameter("message");
 			System.out.println(r);
 			if (r.equals("{\"start\":\"true\"}")) {
