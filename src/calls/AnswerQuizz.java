@@ -24,12 +24,13 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import java.util.ArrayList;
 import server.model.ClientQuestionOrAction;
+import server.model.QuizzAnswer;
 
 /**
  * Servlet implementation class OrderServlet
  */
-@WebServlet(name = "Ask", urlPatterns = {"/ask"})
-public class Ask extends HttpServlet {
+@WebServlet(name = "AnswerQuizz", urlPatterns = {"/quiz"})
+public class AnswerQuizz extends HttpServlet {
 
    private static final long serialVersionUID = 1L;
    Gson gson = new GsonBuilder().create();
@@ -40,7 +41,7 @@ public class Ask extends HttpServlet {
    /**
     * @see HttpServlet#HttpServlet()
     */
-   public Ask() {
+   public AnswerQuizz() {
       super();
    }
 
@@ -75,29 +76,27 @@ public class Ask extends HttpServlet {
 
          String r = request.getParameter("message");
          System.out.println(r);
-         Answer req = gson.fromJson(r, Answer.class);
+         QuizzAnswer req = gson.fromJson(r, QuizzAnswer.class);
          r = gson.toJson(req);
          System.out.println(r);
          int id = req.getId();
          /**
           * failsafe in case a question is asked before it should be possible
           */
-         if (!worker.canAnswer(id)) {
+         Template temp;
+         if (!worker.canAnswerQuizz(id)) {
             id = -1;
+            ArrayList<ClientQuestionOrAction> x = worker.buildResonse(id);
+
+            root.put("id", id);
+            root.put("reply", worker.getReply(id));
+            root.put("variants", x);
+            /* Get the template */
+         } else {
+            String feedback = worker.processQuizAnswers(id, req.getAnswers());
 
          }
-         ArrayList<ClientQuestionOrAction> x = worker.buildResonse(id);
-         System.out.println("Printing responses");
-         x.stream().forEach((ClientQuestionOrAction y) -> {
-            System.out.println(y.getId());
-         });
-
-         root.put("id", id);
-         root.put("reply", worker.getReply(id));
-         root.put("variants", x);
-         /* Get the template */
-         Template temp = cfg.getTemplate("qaListResponse.ftl");
-
+         temp = cfg.getTemplate("qaListResponse.ftl");
          /* Merge data-model with template */
          try {
             temp.process(root, writer);
