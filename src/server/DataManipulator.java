@@ -64,6 +64,16 @@ public class DataManipulator {
         return message;
     }
 
+    public synchronized String getReply(int id) {
+        String tmp = "*empty*";
+        for (QuestionOrAction qna : knowledgeBase) {
+            if (qna.getId() == id) {
+                tmp = new ClientQuestionOrAction(qna).getReply();
+            }
+        }
+        return tmp;
+    }
+
     public synchronized ArrayList<ClientQuestionOrAction> buildResonse(
             int answerId) {
         ArrayList<ClientQuestionOrAction> result = new ArrayList<>();

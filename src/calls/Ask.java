@@ -76,6 +76,10 @@ public class Ask extends HttpServlet {
                 System.out.println(y.getId());
             });
 
+            int id = req.getId();
+
+            root.put("id", id);
+            root.put("reply", worker.getReply(id));
             root.put("variants", x);
             /* Get the template */
 
