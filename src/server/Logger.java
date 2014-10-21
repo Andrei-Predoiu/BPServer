@@ -46,6 +46,9 @@ public final class Logger {
     * @param message the message that will be written to the file
     */
    public synchronized static void write(int senderID, String message) {
+      if (message == null) {
+         message = "**empty**";
+      }
       try {
          String header = "";
          timestamp.setTime(System.currentTimeMillis());

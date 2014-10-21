@@ -80,9 +80,7 @@ public class AnswerQuizz extends HttpServlet {
          System.out.println(r);
          int id = req.getId();
          Template temp;
-         ArrayList<ClientQuestionOrAction> x = worker.buildResonse(id);
          root.put("id", id);
-         root.put("variants", x);
          /**
           * failsafe in case a question is asked before it should be possible
           */
@@ -94,6 +92,8 @@ public class AnswerQuizz extends HttpServlet {
             String feedback = worker.processQuizAnswers(id, req.getAnswers());
             root.put("reply", feedback);
          }
+         ArrayList<ClientQuestionOrAction> x = worker.buildResonse(id);
+         root.put("variants", x);
          temp = cfg.getTemplate("qaListResponse.ftl");
          /* Merge data-model with template */
          try {

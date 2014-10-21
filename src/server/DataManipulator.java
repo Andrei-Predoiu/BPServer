@@ -78,19 +78,18 @@ public class DataManipulator {
       return tmp;
    }
 
-   private synchronized String getBody(int id) {
-      String tmp = "*handshake*";
+   private synchronized ClientQuestionOrAction getQna(int id) {
       for (QuestionOrAction qna : knowledgeBase) {
          if (qna.getId() == id) {
-            tmp = new ClientQuestionOrAction(qna).getBody();
+            return new ClientQuestionOrAction(qna);
          }
       }
-      return tmp;
+      return new ClientQuestionOrAction(new QuestionOrAction());
    }
 
    public synchronized ArrayList<ClientQuestionOrAction> buildResonse(
            int answerId) {
-      Logger.write(2, getBody(answerId));
+      Logger.write(2, getQna(answerId).getBody());
       ArrayList<ClientQuestionOrAction> result = new ArrayList<>();
       if (true /*startReady*/) {
          boolean skip = false;
@@ -99,11 +98,9 @@ public class DataManipulator {
                skip = true;
             }
          }
-         //To be removed start
-         String tempOutout = "";
-         tempOutout = knowns.stream().map((x) -> x + ", ").reduce(tempOutout, String::concat);
-         System.out.println("Knowns:\n" + tempOutout);
-         //To be removed stop
+         if (getQna(answerId).getType().equals("question")) {
+            answerId = -1;
+         }
 
          if (!skip) {
             knowns.add(answerId);
@@ -170,7 +167,7 @@ public class DataManipulator {
       String feedback = "";
       feedback = answers.stream().map((id) -> getFeedbackById(questionID, id) + "\n").reduce(feedback, String::concat);
       knowns.add(questionID);
-      log.write(0, "FEEBACK\n" + feedback);
+      Logger.write(0, "FEEBACK\n" + feedback);
       return feedback;
    }
 

@@ -3,40 +3,51 @@ package server.model.serverKnowledge;
 import java.util.ArrayList;
 
 public class QuestionOrAction {
-	private int id;
-	private ArrayList<Integer> prerequisites;
-	private boolean relevant;
-	private String type;
-	private ArrayList<String> bodies;
-	private ArrayList<String> replies;
-	private ArrayList<Choice> choices;
 
-	public int getId() {
-		return id;
-	}
+   private final int id;
+   private final ArrayList<Integer> prerequisites;
+   private final boolean relevant;
+   private final String type;
+   private final ArrayList<String> bodies;
+   private final ArrayList<String> replies;
+   private final ArrayList<Choice> choices;
 
-	public ArrayList<Integer> getPrerequisites() {
-		return prerequisites;
-	}
+   public QuestionOrAction() {
+      this.id = -1;
+      this.prerequisites = new ArrayList<>();
+      this.relevant = false;
+      this.type = "none";
+      this.bodies = new ArrayList<>();
+      this.replies = new ArrayList<>();
+      this.choices = new ArrayList<>();
+   }
 
-	public boolean isRelevant() {
-		return relevant;
-	}
+   public int getId() {
+      return id;
+   }
 
-	public String getType() {
-		return type;
-	}
+   public ArrayList<Integer> getPrerequisites() {
+      return prerequisites;
+   }
 
-	public ArrayList<String> getBodies() {
-		return bodies;
-	}
+   public boolean isRelevant() {
+      return relevant;
+   }
 
-	public ArrayList<String> getReplies() {
-		return replies;
-	}
+   public String getType() {
+      return type;
+   }
 
-	public ArrayList<Choice> getChoices() {
-		return choices;
-	}
+   public ArrayList<String> getBodies() {
+      return bodies;
+   }
+
+   public ArrayList<String> getReplies() {
+      return replies;
+   }
+
+   public ArrayList<Choice> getChoices() {
+      return choices;
+   }
 
 }
