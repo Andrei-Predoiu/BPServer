@@ -1,6 +1,5 @@
 package server;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,7 +24,7 @@ public class DataManipulator {
       knowledgeLoader = new KnowledgeParser();
       knowledgeBase = knowledgeLoader.getKnowlegeBaseArray();
       knowns = new HashSet();
-      log = new Logger("C:\\server\\log.txt");
+      log = Logger.getInstance("C:\\server\\log.txt");
    }
 
    public synchronized static DataManipulator getInstance() {
@@ -69,10 +68,21 @@ public class DataManipulator {
    }
 
    public synchronized String getReply(int id) {
-      String tmp = "*empty*";
+      String tmp = "*handshake*";
       for (QuestionOrAction qna : knowledgeBase) {
          if (qna.getId() == id) {
             tmp = new ClientQuestionOrAction(qna).getReply();
+         }
+      }
+      Logger.write(1, tmp);
+      return tmp;
+   }
+
+   private synchronized String getBody(int id) {
+      String tmp = "*handshake*";
+      for (QuestionOrAction qna : knowledgeBase) {
+         if (qna.getId() == id) {
+            tmp = new ClientQuestionOrAction(qna).getBody();
          }
       }
       return tmp;
@@ -80,6 +90,7 @@ public class DataManipulator {
 
    public synchronized ArrayList<ClientQuestionOrAction> buildResonse(
            int answerId) {
+      Logger.write(2, getBody(answerId));
       ArrayList<ClientQuestionOrAction> result = new ArrayList<>();
       if (true /*startReady*/) {
          boolean skip = false;
@@ -90,9 +101,7 @@ public class DataManipulator {
          }
          //To be removed start
          String tempOutout = "";
-         for (int x : knowns) {
-            tempOutout += x + ", ";
-         }
+         tempOutout = knowns.stream().map((x) -> x + ", ").reduce(tempOutout, String::concat);
          System.out.println("Knowns:\n" + tempOutout);
          //To be removed stop
 
@@ -159,11 +168,9 @@ public class DataManipulator {
     */
    public synchronized String processQuizAnswers(int questionID, ArrayList<Integer> answers) {
       String feedback = "";
-      for (int id : answers) {
-         feedback += getFeedbackById(questionID, id) + "\n";
-
-      }
+      feedback = answers.stream().map((id) -> getFeedbackById(questionID, id) + "\n").reduce(feedback, String::concat);
       knowns.add(questionID);
+      log.write(0, "FEEBACK\n" + feedback);
       return feedback;
    }
 

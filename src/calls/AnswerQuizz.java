@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import server.DataManipulator;
 import server.FreemarkerConfig;
-import server.model.Answer;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -80,21 +79,20 @@ public class AnswerQuizz extends HttpServlet {
          r = gson.toJson(req);
          System.out.println(r);
          int id = req.getId();
+         Template temp;
+         ArrayList<ClientQuestionOrAction> x = worker.buildResonse(id);
+         root.put("id", id);
+         root.put("variants", x);
          /**
           * failsafe in case a question is asked before it should be possible
           */
-         Template temp;
          if (!worker.canAnswerQuizz(id)) {
             id = -1;
-            ArrayList<ClientQuestionOrAction> x = worker.buildResonse(id);
-
-            root.put("id", id);
             root.put("reply", worker.getReply(id));
-            root.put("variants", x);
             /* Get the template */
          } else {
             String feedback = worker.processQuizAnswers(id, req.getAnswers());
-
+            root.put("reply", feedback);
          }
          temp = cfg.getTemplate("qaListResponse.ftl");
          /* Merge data-model with template */

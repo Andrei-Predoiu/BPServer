@@ -10,20 +10,33 @@ import java.util.logging.Level;
 
 /**
  *
- * @author 2Xmatch
+ * @author Andrei Predoiu
  */
 public final class Logger {
 
-   private final String logPath;
-   private final SimpleDateFormat finalDF = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-   private final File logFile;
-   private final Date timestamp;
+   private static Logger instance = null;
+   private static String logPath;
+   private static final SimpleDateFormat finalDF = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss");
+   private static BufferedWriter output;
+   private static Date timestamp;
 
-   public Logger(String path) {
-      this.logPath = path;
-      this.logFile = new File(logPath);
+   private Logger(String path) throws IOException {
+      Logger.logPath = path;
       timestamp = new Date();
-      write(-1, "New logging session!!!!!");
+      output = new BufferedWriter(new FileWriter(new File(logPath)));
+   }
+
+   public static Logger getInstance(String path) {
+      if (instance == null) {
+         try {
+            instance = new Logger(path);
+            instance.write(-1, "Server Started\n\n");
+         } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(Logger.class.getName()).log(Level.SEVERE, null, ex);
+         }
+      }
+
+      return instance;
    }
 
    /**
@@ -32,7 +45,7 @@ public final class Logger {
     * @param senderID -1 = debug, 0 = server, 1 = patient, 2 = student
     * @param message the message that will be written to the file
     */
-   public synchronized void write(int senderID, String message) {
+   public synchronized static void write(int senderID, String message) {
       try {
          String header = "";
          timestamp.setTime(System.currentTimeMillis());
@@ -59,15 +72,15 @@ public final class Logger {
             }
          }
          header += "\n";
-         BufferedWriter output;
-         output = new BufferedWriter(new FileWriter(logFile));
-         output.write(header + message);
-         output.close();
+         try {
+            output.write(header + message + "\n");
+            output.flush();
+         } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(Logger.class.getName()).log(Level.SEVERE, "CAN'T WRITE", ex);
+            System.out.println("CAN'T WRITE");
+         }
       } catch (IncompatibleClassChangeError ex) {
          java.util.logging.Logger.getLogger(Logger.class.getName()).log(Level.WARNING, "Invalid sender id: " + senderID, ex);
-      } catch (IOException ex) {
-         java.util.logging.Logger.getLogger(Logger.class.getName()).log(Level.SEVERE, "File doesn't exist or can't write to file!", ex);
-         ex.printStackTrace();
       }
    }
 }
