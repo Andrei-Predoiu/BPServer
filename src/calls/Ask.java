@@ -84,7 +84,6 @@ public class Ask extends HttpServlet {
           */
          if (!worker.canAnswer(id)) {
             id = -1;
-
          }
          ArrayList<ClientQuestionOrAction> x = worker.buildResonse(id);
          System.out.println("Printing responses");

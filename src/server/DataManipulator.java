@@ -68,17 +68,20 @@ public class DataManipulator {
    }
 
    public synchronized String getReply(int id) {
-      String tmp = "*handshake*";
-      for (QuestionOrAction qna : knowledgeBase) {
-         if (qna.getId() == id) {
-            tmp = new ClientQuestionOrAction(qna).getReply();
+      String tmp = "**empty**";
+      if (id >= 0) {
+         for (QuestionOrAction qna : knowledgeBase) {
+            if (qna.getId() == id) {
+               tmp = new ClientQuestionOrAction(qna).getReply();
+               break;
+            }
          }
       }
       Logger.write(1, tmp);
       return tmp;
    }
 
-   private synchronized ClientQuestionOrAction getQna(int id) {
+   public synchronized ClientQuestionOrAction getClientQna(int id) {
       for (QuestionOrAction qna : knowledgeBase) {
          if (qna.getId() == id) {
             return new ClientQuestionOrAction(qna);
@@ -87,9 +90,18 @@ public class DataManipulator {
       return new ClientQuestionOrAction(new QuestionOrAction());
    }
 
+   private synchronized QuestionOrAction getQoAByID(int id) {
+      for (QuestionOrAction qna : knowledgeBase) {
+         if (qna.getId() == id) {
+            return qna;
+         }
+      }
+      return null;
+   }
+
    public synchronized ArrayList<ClientQuestionOrAction> buildResonse(
            int answerId) {
-      Logger.write(2, getQna(answerId).getBody());
+      Logger.write(2, getClientQna(answerId).getBody());
       ArrayList<ClientQuestionOrAction> result = new ArrayList<>();
       if (true /*startReady*/) {
          boolean skip = false;
@@ -98,7 +110,7 @@ public class DataManipulator {
                skip = true;
             }
          }
-         if (getQna(answerId).getType().equals("question")) {
+         if (getClientQna(answerId).getType().equals("question")) {
             answerId = -1;
          }
 
@@ -132,6 +144,9 @@ public class DataManipulator {
       }
       for (QuestionOrAction qna : knowledgeBase) {
          if (qna.getId() == id) {
+            if (qna.getType().equals("question")) {
+               return false;
+            }
             return knowns.containsAll(qna.getPrerequisites());
          }
       }
@@ -139,21 +154,14 @@ public class DataManipulator {
    }
 
    public synchronized boolean canAnswerQuizz(int id) {
-      for (QuestionOrAction qna : knowledgeBase) {
-         if (qna.getId() == id && qna.getType().equals("question")) {
-            return knowns.containsAll(qna.getPrerequisites());
+      if (!knowns.contains(id)) {
+         for (QuestionOrAction qna : knowledgeBase) {
+            if (qna.getId() == id && qna.getType().equals("question")) {
+               return knowns.containsAll(qna.getPrerequisites());
+            }
          }
       }
       return false;
-   }
-
-   private synchronized QuestionOrAction getQoAByID(int id) {
-      for (QuestionOrAction qna : knowledgeBase) {
-         if (qna.getId() == id) {
-            return qna;
-         }
-      }
-      return null;
    }
 
    /**
