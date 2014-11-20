@@ -64,12 +64,13 @@ public class DataManipulator {
       } else {
          message = "Connect phone";
       }
-      return message;
+      knowns.clear();
+      return "accepted";
    }
 
    public synchronized String getReply(int id) {
       String tmp = "**empty**";
-      if (id >= 0) {
+      if (id != -1) {
          for (QuestionOrAction qna : knowledgeBase) {
             if (qna.getId() == id) {
                tmp = new ClientQuestionOrAction(qna).getReply();
@@ -113,8 +114,12 @@ public class DataManipulator {
          if (getClientQna(answerId).getType().equals("question")) {
             answerId = -1;
          }
+         if (answerId == -2) {
+            skip = true;
+         }
 
          if (!skip) {
+            int count = 0;
             knowns.add(answerId);
             System.out.println("added id: " + answerId);
             for (QuestionOrAction tmp : knowledgeBase) {
@@ -122,19 +127,23 @@ public class DataManipulator {
                   if (tmp.getPrerequisites().size() > 0) {
                      for (int j = 0; j < tmp.getPrerequisites().size(); j++) {
                         if (!knowns.contains(tmp.getPrerequisites().get(j))) {
+                           System.out.println("missing preprequireiste: " + tmp.getPrerequisites().get(j) + "dropping " + tmp.getId());
                            break;
                         }
-                        if (j == tmp.getPrerequisites().size() - 1) {
+                        if ((j == tmp.getPrerequisites().size() - 1) && (count < 7)) {
                            result.add(new ClientQuestionOrAction(tmp));
+                           count++;
                         }
                      }
-                  } else {
+                  } else if (count < 7) {
                      result.add(new ClientQuestionOrAction(tmp));
+                     count++;
                   }
                }
             }
          }
       }
+
       return result;
    }
 

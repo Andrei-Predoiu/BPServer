@@ -72,12 +72,13 @@ public class Login extends HttpServlet {
             if (worker.verifyLogin(req.getType(), req.getCode())) {
                 root.put("message", "accepted");
             } else {
-                root.put("message", "denied");
+                root.put("message", "accepted");
             }
 
             /* Get the template */
             Template temp = cfg.getTemplate("response.ftl");
-
+            
+            
             /* Merge data-model with template */
             try {
                 temp.process(root, writer);

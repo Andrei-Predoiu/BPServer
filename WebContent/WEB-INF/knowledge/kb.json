@@ -5,13 +5,13 @@
       "relevant": "true",
       "type": "inquiry",
       "bodies": [
-         "0:Hello my name is ... .I am a nurse student. How are you today?",
-         "1:Hello my name is ... .I am a nurse student. How are you today?",
-         "2:Hello my name is ... .I am a nurse student. How are you today?",
-         "3:Hello my name is ... .I am a nurse student. How are you today?"
+         "Hello my name is ... .I am a nurse student. How are you today?",
+         "Hello my name is ... .I am a nurse student. How are you today?",
+         "Hello my name is ... .I am a nurse student. How are you today?",
+         "Hello my name is ... .I am a nurse student. How are you today?"
       ],
       "replies": [
-         "I cannot understand why my legs are so heavy and feeling tight. My shoes are to tight especially in the evening. ",
+         "I cannot understand why my legs are so heavy and feeling tight. My shoes are to tight, especially in the evening. ",
          "My legs always get heavy during the day but during my stay in hospital it has become worse",
          "My feet and legs are sore but I don't have pain"
       ]
@@ -66,29 +66,15 @@
       ]
    },
    {
-      "id": "4",
+      "id": "5",
       "prerequisites": [
          0
       ],
       "relevant": "true",
       "type": "inquiry",
       "bodies": [
-         "Can you lift your leg up?",
-         "Will you lift your leg please."
-      ],
-      "replies": [
-         "My feet are so heavy, and I quickly lose my breath",
-         "I can barely lift my leg on my own"
-      ]
-   },
-   {
-      "id": "5",
-      "prerequisites": [],
-      "relevant": "true",
-      "type": "inquiry",
-      "bodies": [
-         "0:Have you had any activity today?",
-         "1:Did you have any activity today?"
+         "Have you had any activity today?",
+         "Did you have any activity today?"
       ],
       "replies": [
          "I am very tired and I am short of breath so I have been resting in this chair for several hours"
@@ -156,25 +142,31 @@
             "id": "0",
             "correct": "true",
             "body": "It's a technique designed to enable blood flow in the legs",
-            "feedback": "Q1-Correct"
+            "feedback": "Correct, it's a technique designed to enable blood flow in the legs"
          },
          {
             "id": "1",
             "correct": "true",
             "body": "It works by combining deep breathing with ankle movement",
-            "feedback": "Q2-Correct"
+            "feedback": "Correct, It works by combining deep breathing with ankle movement"
          },
          {
             "id": "2",
             "correct": "true",
             "body": "You will have to start taking deep, continuous breaths and i will be stretching and relaxing your ankle",
-            "feedback": "Q3-Correct"
+            "feedback": "Correct, the procedure the patient needs to follow is correct"
          },
          {
             "id": "3",
             "correct": "true",
             "body": "You should try doing this at home regularly when you have no activity",
-            "feedback": "Q4-Correct"
+            "feedback": "Correct, suggesting to the patient do do this at home is a good idea"
+         },
+         {
+            "id": "4",
+            "correct": "false",
+            "body": "You should try flexing the leg back and forward at the knee",
+            "feedback": "False, bending the leg at the knee is not part of the exercise"
          }
       ]
    },
@@ -197,20 +189,289 @@
             "id": "0",
             "correct": "true",
             "body": "It's caused by accumulated blood in the legs",
-            "feedback": "Q1-Correct"
+            "feedback": "Correct, it is caused by accumulated blood in the legs"
          },
          {
             "id": "1",
             "correct": "true",
             "body": "Bad circulation is accentuated by the lack of exercise and muscle activity",
-            "feedback": "Q2-Correct"
+            "feedback": "Correct, Bad circulation is accentuated by the lack of exercise and muscle activity"
          },
          {
             "id": "2",
             "correct": "true",
             "body": "You need to exercise every day in order to avoid swollen legs",
-            "feedback": "Q3-Correct"
+            "feedback": "Correct, the patient needs to exercise every day in order to avoid swollen legs"
          }
+      ]
+   },
+   {
+      "id": "-3",
+      "prerequisites": [
+         8
+      ],
+      "relevant": "true",
+      "type": "inquiry",
+      "bodies": [
+         "Have you had oedema before?"
+      ],
+      "replies": [
+         "My legs usually gets a bit swollen in the evening, but never as much as now."
+      ]
+   },
+   {
+      "id": "-4",
+      "prerequisites": [
+         8
+      ],
+      "relevant": "true",
+      "type": "inquiry",
+      "bodies": [
+         "Are your legs swollen in the morning?"
+      ],
+      "replies": [
+         "No they are not swollen in the morning."
+      ]
+   },
+   {
+      "id": "-5",
+      "prerequisites": [
+         0
+      ],
+      "relevant": "true",
+      "type": "inquiry",
+      "bodies": [
+         "Do you eat sufficient?"
+      ],
+      "replies": [
+         "Yes i eat sufficient."
+      ]
+   },
+   {
+      "id": "-6",
+      "prerequisites": [
+      ],
+      "relevant": "true",
+      "type": "inquiry",
+      "bodies": [
+         "Do you need a stick or some kind of aid to get mobilized?"
+      ],
+      "replies": [
+         "Yes I have difficulty in walking on my own."
+      ]
+   },
+   {
+      "id": "-7",
+      "prerequisites": [
+         8
+      ],
+      "relevant": "true",
+      "type": "inquiry",
+      "bodies": [
+         "Do you use some kind of cream to keep your skin moist?"
+      ],
+      "replies": [
+         "No I am not using cream to keep my skin moist."
+      ]
+   },
+   {
+      "id": "-9",
+      "prerequisites": [
+         3
+      ],
+      "relevant": "true",
+      "type": "inquiry",
+      "bodies": [
+         "Do you have varices in your legs?"
+      ],
+      "replies": [
+         "Yes I have some varices on both legs."
+      ]
+   },
+   {
+      "id": "-10",
+      "prerequisites": [
+         3
+      ],
+      "relevant": "true",
+      "type": "inquiry",
+      "bodies": [
+         "Do you use support stockings?"
+      ],
+      "replies": [
+         "No I don’t use support stockings."
+      ]
+   },
+   {
+      "id": "-11",
+      "prerequisites": [
+         0,
+         9
+      ],
+      "relevant": "true",
+      "type": "inquiry",
+      "bodies": [
+         "Do you make vein pump exercises?"
+      ],
+      "replies": [
+         "No I don’t know what that is."
+      ]
+   },
+   {
+      "id": "-12",
+      "prerequisites": [
+         0,
+         9
+      ],
+      "relevant": "true",
+      "type": "inquiry",
+      "bodies": [
+         "Do you get any anticoagulant medicine?"
+      ],
+      "replies": [
+         "No not as far as I know but you will have to ask the nurse or the doctor."
+      ]
+   },
+   {
+      "id": "-13",
+      "prerequisites": [
+         8
+      ],
+      "relevant": "true",
+      "type": "inquiry",
+      "bodies": [
+         "How much do you drink per day?"
+      ],
+      "replies": [
+         "I drink arond one and a half liters per day"
+      ]
+   },
+   {
+      "id": "-14",
+      "prerequisites": [
+         0
+      ],
+      "relevant": "true",
+      "type": "inquiry",
+      "bodies": [
+         "Have you got any disease in your kidneys?"
+      ],
+      "replies": [
+         "No, my kidneys are healthy."
+      ]
+   },
+   {
+      "id": "-15",
+      "prerequisites": [
+         3
+      ],
+      "relevant": "true",
+      "type": "inquiry",
+      "bodies": [
+         "Are your legs red and warm?"
+      ],
+      "replies": [
+         "No they are not more red or warm than usual."
+      ]
+   },
+   {
+      "id": "-16",
+      "prerequisites": [
+         3
+      ],
+      "relevant": "true",
+      "type": "inquiry",
+      "bodies": [
+         "Are your heels hurting or sore??"
+      ],
+      "replies": [
+         "Yes my heels are sore and they hurt if I lay on them for to long."
+      ]
+   },
+   {
+      "id": "-17",
+      "prerequisites": [
+         3
+      ],
+      "relevant": "true",
+      "type": "inquiry",
+      "bodies": [
+         "For how long have you been sitting in this chair?"
+      ],
+      "replies": [
+         "I have been sitting in this chair for 10 minutes.",
+         "Around 10 minutes."
+      ]
+   },
+   {
+      "id": "-18",
+      "prerequisites": [
+         8
+      ],
+      "relevant": "true",
+      "type": "inquiry",
+      "bodies": [
+         "Are your legs pale and more cold than usual?"
+      ],
+      "replies": [
+         "No they are not more pale or cold than usual.",
+         "Not more than ususal."
+      ]
+   },
+   {
+      "id": "-19",
+      "prerequisites": [
+         8
+      ],
+      "relevant": "true",
+      "type": "inquiry",
+      "bodies": [
+         "Are you suffering from hypertension?"
+      ],
+      "replies": [
+         "No I am not suffering from hypertension."
+      ]
+   },
+   {
+      "id": "-20",
+      "prerequisites": [
+         0
+      ],
+      "relevant": "true",
+      "type": "inquiry",
+      "bodies": [
+         "Do you have any allergies?"
+      ],
+      "replies": [
+         "No I don’t have any allergies."
+      ]
+   },
+   {
+      "id": "-21",
+      "prerequisites": [
+         8
+      ],
+      "relevant": "true",
+      "type": "inquiry",
+      "bodies": [
+         "Have you discussed your oedemas with the nurse or the doctor?"
+      ],
+      "replies": [
+         "No I havnt discussed my oedemas with the muse or the doctor."
+      ]
+   },
+   {
+      "id": "-22",
+      "prerequisites": [
+         8
+      ],
+      "relevant": "true",
+      "type": "inquiry",
+      "bodies": [
+         "Have you had any blood test?"
+      ],
+      "replies": [
+         "Yes I had bloodtest done yesterday and they were fine. My serum-albumine was fine."
       ]
    }
 ]

@@ -8,10 +8,10 @@ import server.model.serverKnowledge.QuestionOrAction;
 
 public class ClientQuestionOrAction {
 
-   private final int id;
-   private final String type;
-   private final String body;
-   private final String reply;
+   private int id;
+   private String type;
+   private String body;
+   private String reply;
    private ArrayList<Choice> choices;
 
    public ClientQuestionOrAction(QuestionOrAction qoA) {
@@ -32,6 +32,26 @@ public class ClientQuestionOrAction {
          this.choices = qoA.getChoices();
       }
       rand = null;
+   }
+
+   public void setId(int id) {
+      this.id = id;
+   }
+
+   public void setType(String type) {
+      this.type = type;
+   }
+
+   public void setBody(String body) {
+      this.body = body;
+   }
+
+   public void setReply(String reply) {
+      this.reply = reply;
+   }
+
+   public void setChoices(ArrayList<Choice> choices) {
+      this.choices = choices;
    }
 
    public int getId() {
