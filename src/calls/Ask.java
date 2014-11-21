@@ -93,6 +93,7 @@ public class Ask extends HttpServlet {
 
          root.put("id", id);
          root.put("reply", worker.getReply(id));
+         root.put("source", "patient");
          root.put("variants", x);
          /* Get the template */
          Template temp = cfg.getTemplate("qaListResponse.ftl");

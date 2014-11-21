@@ -87,10 +87,24 @@ public class AnswerQuizz extends HttpServlet {
          if (!worker.canAnswerQuizz(id)) {
             id = -1;
             root.put("reply", worker.getReply(id));
+            root.put("source", "patient");
             /* Get the template */
          } else {
-            String feedback = worker.processQuizAnswers(id, req.getAnswers());
+            Map<String, String> results = worker.processQuizAnswers(id, req.getAnswers());
+            String feedback = results.get("feedback");
             root.put("reply", feedback);
+
+            switch (results.get("status")) {
+               case ("great"):
+                  root.put("source", "teacherG");
+                  break;
+               case ("sufficient"):
+                  root.put("source", "teacherO");
+                  break;
+               case ("failed"):
+                  root.put("source", "teacherR");
+                  break;
+            }
          }
          ArrayList<ClientQuestionOrAction> x = worker.buildResonse(id);
          root.put("variants", x);

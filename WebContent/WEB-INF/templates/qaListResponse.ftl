@@ -1,6 +1,7 @@
 {
     "id": "${id}",
     "reply": "${reply}",
+    "source": "${source}",
     "options":[<#list variants as v><#if v_index != 0>,</#if>
         {
             "id": "${v.getId()}",
