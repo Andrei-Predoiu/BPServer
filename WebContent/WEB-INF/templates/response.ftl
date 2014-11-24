@@ -1,3 +1,3 @@
 {
-"result": "${message}"
+"result": "${message!"empty"}"
 }

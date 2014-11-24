@@ -1,6 +1,5 @@
-package calls;
+package calls.gcm;
 
-import calls.gcm.GcmSender;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -23,12 +22,13 @@ import com.google.gson.GsonBuilder;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import server.model.ServerMessage;
 
 /**
  * Servlet implementation class OrderServlet
  */
-@WebServlet(urlPatterns = {"/login"})
-public class Login extends HttpServlet {
+@WebServlet(urlPatterns = {"/gcm"})
+public class Gcm extends HttpServlet {
 
    private static final long serialVersionUID = 1L;
    Gson gson = new GsonBuilder().create();
@@ -39,7 +39,7 @@ public class Login extends HttpServlet {
    /**
     * @see HttpServlet#HttpServlet()
     */
-   public Login() {
+   public Gcm() {
       super();
    }
 
@@ -66,17 +66,11 @@ public class Login extends HttpServlet {
          ServletContext sc = this.getServletContext();
          String r = request.getParameter("message");
          System.out.println("login call Raw data:\n" + r + "\n__________________________________________");
-         LoginData req = gson.fromJson(r, LoginData.class);
+         ServerMessage req = gson.fromJson(r, ServerMessage.class);
          r = gson.toJson(req);
-         System.out.println("Login recieved:\nType: " + req.getType() + "\nCode: " + req.getCode() + "\n__________________________________________");
+         System.out.println("Message recieved:\n" + req.getResult() + "\n__________________________________________");
 
-         if (worker.verifyLogin(req.getType(), req.getCode())) {
-            root.put("message", "accepted");
-            gcm.registerDevice(req.getType(), req.getGcmRegID());
-         } else {
-            gcm.registerDevice(req.getType(), req.getGcmRegID());
-            root.put("message", "accepted");
-         }
+         root.put("message", gcm.sendMessage("phone", 2, "Server ECHO: " + req.getResult()));
 
          /* Get the template */
          Template temp = cfg.getTemplate("response.ftl");

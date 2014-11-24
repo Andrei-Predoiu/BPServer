@@ -206,6 +206,20 @@
       ]
    },
    {
+      "id": "-2",
+      "prerequisites": [
+         12, 9, 7
+      ],
+      "relevant": "true",
+      "type": "inquiry",
+      "bodies": [
+         "Peter if there is nothing else, i think we are done. Remember to follow my advice and if have more problems contact your doctor."
+      ],
+      "replies": [
+         "Thank you for seeing me today, I already feel much better."
+      ]
+   },
+   {
       "id": "-3",
       "prerequisites": [
          8
