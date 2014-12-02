@@ -1,491 +1,555 @@
-[
-   {
-      "id": "0",
-      "prerequisites": [],
-      "relevant": "true",
-      "type": "inquiry",
-      "bodies": [
-         "Hello my name is ... .I am a nurse student. How are you today?",
-         "Hello my name is ... .I am a nurse student. How are you today?",
-         "Hello my name is ... .I am a nurse student. How are you today?",
-         "Hello my name is ... .I am a nurse student. How are you today?"
-      ],
-      "replies": [
-         "I cannot understand why my legs are so heavy and feeling tight. My shoes are to tight, especially in the evening. ",
-         "My legs always get heavy during the day but during my stay in hospital it has become worse",
-         "My feet and legs are sore but I don't have pain"
-      ]
-   },
-   {
-      "id": "1",
-      "prerequisites": [
-         0
-      ],
-      "relevant": "true",
-      "type": "inquiry",
-      "bodies": [
-         "Is it something new that your legs get heavy?",
-         "Have you experienced before that your leg get heavy?"
-      ],
-      "replies": [
-         "My legs always get heavy during the day",
-         "My legs always get heavy during the day but during my stay in hospital it has become worse"
-      ]
-   },
-   {
-      "id": "2",
-      "prerequisites": [
-         1
-      ],
-      "relevant": "true",
-      "type": "inquiry",
-      "bodies": [
-         "Do you have any pain in your feet or legs? ",
-         "Do your feet hurt?",
-         "Does the swelling hurt?"
-      ],
-      "replies": [
-         "My feet and legs are sore but I don't have pain",
-         "No, my legs don't hurt, but they are sore all the time"
-      ]
-   },
-   {
-      "id": "3",
-      "prerequisites": [
-         0
-      ],
-      "relevant": "true",
-      "type": "action",
-      "bodies": [
-         "May I take off your shoes and socks?",
-         "I will take off your shoes and socks now."
-      ],
-      "replies": [
-         "Ok, but i can't help you, my feet are too stiff",
-         "Go ahead"
-      ]
-   },
-   {
-      "id": "5",
-      "prerequisites": [
-         0
-      ],
-      "relevant": "true",
-      "type": "inquiry",
-      "bodies": [
-         "Have you had any activity today?",
-         "Did you have any activity today?"
-      ],
-      "replies": [
-         "I am very tired and I am short of breath so I have been resting in this chair for several hours"
-      ]
-   },
-   {
-      "id": "6",
-      "prerequisites": [
-         1
-      ],
-      "relevant": "true",
-      "type": "inquiry",
-      "bodies": [
-         "Could you go for a walk with me now?"
-      ],
-      "replies": [
-         "No, I haven't got my breath right now, but I would like to go for a walk later"
-      ]
-   },
-   {
-      "id": "7",
-      "prerequisites": [
-         1
-      ],
-      "relevant": "true",
-      "type": "action",
-      "bodies": [
-         "Could you put your legs on this stool?"
-      ],
-      "replies": [
-         "No, I can't do it alone, can you please help me?"
-      ]
-   },
-   {
-      "id": "8",
-      "prerequisites": [
-         3
-      ],
-      "relevant": "true",
-      "type": "action",
-      "bodies": [
-         "Do you mind if i examine the leg?"
-      ],
-      "replies": [
-         "It's fine, go ahead"
-      ]
-   },
-   {
-      "id": "9",
-      "prerequisites": [
-         7,
-         8,
-         3
-      ],
-      "relevant": "true",
-      "type": "question",
-      "bodies": [
-         "I would like to perform an exercise to activate the blood flow in the leg but first i have to inform you how it works"
-      ],
-      "replies": [
-         "I would like to know more about this process."
-      ],
-      "choices": [
-         {
-            "id": "0",
-            "correct": "true",
-            "body": "It's a technique designed to enable blood flow in the legs",
-            "feedback": "Correct, it's a technique designed to enable blood flow in the legs"
-         },
-         {
-            "id": "1",
-            "correct": "true",
-            "body": "It works by combining deep breathing with ankle movement",
-            "feedback": "Correct, It works by combining deep breathing with ankle movement"
-         },
-         {
-            "id": "2",
-            "correct": "true",
-            "body": "You will have to start taking deep, continuous breaths and i will be stretching and relaxing your ankle",
-            "feedback": "Correct, the procedure the patient needs to follow is correct"
-         },
-         {
-            "id": "3",
-            "correct": "true",
-            "body": "You should try doing this at home regularly when you have no activity",
-            "feedback": "Correct, suggesting to the patient do do this at home is a good idea"
-         },
-         {
-            "id": "4",
-            "correct": "false",
-            "body": "You should try flexing the leg back and forward at the knee",
-            "feedback": "False, bending the leg at the knee is not part of the exercise"
-         }
-      ]
-   },
-   {
-      "id": "12",
-      "prerequisites": [
-         2,
-         8
-      ],
-      "relevant": "true",
-      "type": "question",
-      "bodies": [
-         "I would recommend that you understand the specifics of your medical situation."
-      ],
-      "replies": [
-         "I would like to know more about my illness."
-      ],
-      "choices": [
-         {
-            "id": "0",
-            "correct": "true",
-            "body": "It's caused by accumulated blood in the legs",
-            "feedback": "Correct, it is caused by accumulated blood in the legs"
-         },
-         {
-            "id": "1",
-            "correct": "true",
-            "body": "Bad circulation is accentuated by the lack of exercise and muscle activity",
-            "feedback": "Correct, Bad circulation is accentuated by the lack of exercise and muscle activity"
-         },
-         {
-            "id": "2",
-            "correct": "true",
-            "body": "You need to exercise every day in order to avoid swollen legs",
-            "feedback": "Correct, the patient needs to exercise every day in order to avoid swollen legs"
-         }
-      ]
-   },
-   {
-      "id": "-2",
-      "prerequisites": [
-         12, 9, 7
-      ],
-      "relevant": "true",
-      "type": "inquiry",
-      "bodies": [
-         "Peter if there is nothing else, i think we are done. Remember to follow my advice and if have more problems contact your doctor."
-      ],
-      "replies": [
-         "Thank you for seeing me today, I already feel much better."
-      ]
-   },
-   {
-      "id": "-3",
-      "prerequisites": [
-         8
-      ],
-      "relevant": "true",
-      "type": "inquiry",
-      "bodies": [
-         "Have you had oedema before?"
-      ],
-      "replies": [
-         "My legs usually gets a bit swollen in the evening, but never as much as now."
-      ]
-   },
-   {
-      "id": "-4",
-      "prerequisites": [
-         8
-      ],
-      "relevant": "true",
-      "type": "inquiry",
-      "bodies": [
-         "Are your legs swollen in the morning?"
-      ],
-      "replies": [
-         "No they are not swollen in the morning."
-      ]
-   },
-   {
-      "id": "-5",
-      "prerequisites": [
-         0
-      ],
-      "relevant": "true",
-      "type": "inquiry",
-      "bodies": [
-         "Do you eat sufficient?"
-      ],
-      "replies": [
-         "Yes i eat sufficient."
-      ]
-   },
-   {
-      "id": "-6",
-      "prerequisites": [
-      ],
-      "relevant": "true",
-      "type": "inquiry",
-      "bodies": [
-         "Do you need a stick or some kind of aid to get mobilized?"
-      ],
-      "replies": [
-         "Yes I have difficulty in walking on my own."
-      ]
-   },
-   {
-      "id": "-7",
-      "prerequisites": [
-         8
-      ],
-      "relevant": "true",
-      "type": "inquiry",
-      "bodies": [
-         "Do you use some kind of cream to keep your skin moist?"
-      ],
-      "replies": [
-         "No I am not using cream to keep my skin moist."
-      ]
-   },
-   {
-      "id": "-9",
-      "prerequisites": [
-         3
-      ],
-      "relevant": "true",
-      "type": "inquiry",
-      "bodies": [
-         "Do you have varices in your legs?"
-      ],
-      "replies": [
-         "Yes I have some varices on both legs."
-      ]
-   },
-   {
-      "id": "-10",
-      "prerequisites": [
-         3
-      ],
-      "relevant": "true",
-      "type": "inquiry",
-      "bodies": [
-         "Do you use support stockings?"
-      ],
-      "replies": [
-         "No I don’t use support stockings."
-      ]
-   },
-   {
-      "id": "-11",
-      "prerequisites": [
-         0,
-         9
-      ],
-      "relevant": "true",
-      "type": "inquiry",
-      "bodies": [
-         "Do you make vein pump exercises?"
-      ],
-      "replies": [
-         "No I don’t know what that is."
-      ]
-   },
-   {
-      "id": "-12",
-      "prerequisites": [
-         0,
-         9
-      ],
-      "relevant": "true",
-      "type": "inquiry",
-      "bodies": [
-         "Do you get any anticoagulant medicine?"
-      ],
-      "replies": [
-         "No not as far as I know but you will have to ask the nurse or the doctor."
-      ]
-   },
-   {
-      "id": "-13",
-      "prerequisites": [
-         8
-      ],
-      "relevant": "true",
-      "type": "inquiry",
-      "bodies": [
-         "How much do you drink per day?"
-      ],
-      "replies": [
-         "I drink arond one and a half liters per day"
-      ]
-   },
-   {
-      "id": "-14",
-      "prerequisites": [
-         0
-      ],
-      "relevant": "true",
-      "type": "inquiry",
-      "bodies": [
-         "Have you got any disease in your kidneys?"
-      ],
-      "replies": [
-         "No, my kidneys are healthy."
-      ]
-   },
-   {
-      "id": "-15",
-      "prerequisites": [
-         3
-      ],
-      "relevant": "true",
-      "type": "inquiry",
-      "bodies": [
-         "Are your legs red and warm?"
-      ],
-      "replies": [
-         "No they are not more red or warm than usual."
-      ]
-   },
-   {
-      "id": "-16",
-      "prerequisites": [
-         3
-      ],
-      "relevant": "true",
-      "type": "inquiry",
-      "bodies": [
-         "Are your heels hurting or sore??"
-      ],
-      "replies": [
-         "Yes my heels are sore and they hurt if I lay on them for to long."
-      ]
-   },
-   {
-      "id": "-17",
-      "prerequisites": [
-         3
-      ],
-      "relevant": "true",
-      "type": "inquiry",
-      "bodies": [
-         "For how long have you been sitting in this chair?"
-      ],
-      "replies": [
-         "I have been sitting in this chair for 10 minutes.",
-         "Around 10 minutes."
-      ]
-   },
-   {
-      "id": "-18",
-      "prerequisites": [
-         8
-      ],
-      "relevant": "true",
-      "type": "inquiry",
-      "bodies": [
-         "Are your legs pale and more cold than usual?"
-      ],
-      "replies": [
-         "No they are not more pale or cold than usual.",
-         "Not more than ususal."
-      ]
-   },
-   {
-      "id": "-19",
-      "prerequisites": [
-         8
-      ],
-      "relevant": "true",
-      "type": "inquiry",
-      "bodies": [
-         "Are you suffering from hypertension?"
-      ],
-      "replies": [
-         "No I am not suffering from hypertension."
-      ]
-   },
-   {
-      "id": "-20",
-      "prerequisites": [
-         0
-      ],
-      "relevant": "true",
-      "type": "inquiry",
-      "bodies": [
-         "Do you have any allergies?"
-      ],
-      "replies": [
-         "No I don’t have any allergies."
-      ]
-   },
-   {
-      "id": "-21",
-      "prerequisites": [
-         8
-      ],
-      "relevant": "true",
-      "type": "inquiry",
-      "bodies": [
-         "Have you discussed your oedemas with the nurse or the doctor?"
-      ],
-      "replies": [
-         "No I havnt discussed my oedemas with the muse or the doctor."
-      ]
-   },
-   {
-      "id": "-22",
-      "prerequisites": [
-         8
-      ],
-      "relevant": "true",
-      "type": "inquiry",
-      "bodies": [
-         "Have you had any blood test?"
-      ],
-      "replies": [
-         "Yes I had bloodtest done yesterday and they were fine. My serum-albumine was fine."
-      ]
-   }
-]
+{
+   "knowledge": [
+      {
+         "id": "0",
+         "prerequisites": [],
+         "relevant": "true",
+         "type": "inquiry",
+         "bodies": [
+            "Hello my name is ... .I am a nurse student. How are you today?",
+            "Hello my name is ... .I am a nurse student. How are you today?",
+            "Hello my name is ... .I am a nurse student. How are you today?",
+            "Hello my name is ... .I am a nurse student. How are you today?"
+         ],
+         "replies": [
+            "I cannot understand why my legs are so heavy and feeling tight. My shoes are to tight, especially in the evening. ",
+            "My legs always get heavy during the day but during my stay in hospital it has become worse",
+            "My feet and legs are sore but I don't have pain"
+         ]
+      },
+      {
+         "id": "1",
+         "prerequisites": [
+            0
+         ],
+         "relevant": "true",
+         "type": "inquiry",
+         "bodies": [
+            "Is it something new that your legs get heavy?",
+            "Have you experienced before that your leg get heavy?"
+         ],
+         "replies": [
+            "My legs always get heavy during the day",
+            "My legs always get heavy during the day but during my stay in hospital it has become worse"
+         ]
+      },
+      {
+         "id": "2",
+         "prerequisites": [
+            1
+         ],
+         "relevant": "true",
+         "type": "inquiry",
+         "bodies": [
+            "Do you have any pain in your feet or legs? ",
+            "Do your feet hurt?",
+            "Does the swelling hurt?"
+         ],
+         "replies": [
+            "My feet and legs are sore but I don't have pain",
+            "No, my legs don't hurt, but they are sore all the time"
+         ]
+      },
+      {
+         "id": "3",
+         "prerequisites": [
+            0
+         ],
+         "relevant": "true",
+         "type": "action",
+         "bodies": [
+            "May I take off your shoes and socks?",
+            "I will take off your shoes and socks now."
+         ],
+         "replies": [
+            "Ok, but i can't help you, my feet are too stiff",
+            "Go ahead"
+         ]
+      },
+      {
+         "id": "5",
+         "prerequisites": [
+            0
+         ],
+         "relevant": "true",
+         "type": "inquiry",
+         "bodies": [
+            "Have you had any activity today?",
+            "Did you have any activity today?"
+         ],
+         "replies": [
+            "I am very tired and I am short of breath so I have been resting in this chair for several hours"
+         ]
+      },
+      {
+         "id": "6",
+         "prerequisites": [
+            1
+         ],
+         "relevant": "true",
+         "type": "inquiry",
+         "bodies": [
+            "Could you go for a walk with me now?"
+         ],
+         "replies": [
+            "No, I haven't got my breath right now, but I would like to go for a walk later"
+         ]
+      },
+      {
+         "id": "7",
+         "prerequisites": [
+            1
+         ],
+         "relevant": "true",
+         "type": "action",
+         "bodies": [
+            "Could you put your legs on this stool?"
+         ],
+         "replies": [
+            "No, I can't do it alone, can you please help me?"
+         ]
+      },
+      {
+         "id": "8",
+         "prerequisites": [
+            3
+         ],
+         "relevant": "true",
+         "type": "action",
+         "bodies": [
+            "Do you mind if i examine the leg?"
+         ],
+         "replies": [
+            "It's fine, go ahead"
+         ]
+      },
+      {
+         "id": "9",
+         "prerequisites": [
+            7,
+            8,
+            3
+         ],
+         "relevant": "true",
+         "type": "question",
+         "bodies": [
+            "I would like to perform an exercise to activate the blood flow in the leg but first i have to inform you how it works"
+         ],
+         "replies": [
+            "I would like to know more about this process."
+         ],
+         "choices": [
+            {
+               "id": "0",
+               "correct": "true",
+               "body": "It's a technique designed to enable blood flow in the legs",
+               "feedback": "Correct, it's a technique designed to enable blood flow in the legs"
+            },
+            {
+               "id": "1",
+               "correct": "true",
+               "body": "It works by combining deep breathing with ankle movement",
+               "feedback": "Correct, It works by combining deep breathing with ankle movement"
+            },
+            {
+               "id": "2",
+               "correct": "true",
+               "body": "You will have to start taking deep, continuous breaths and i will be stretching and relaxing your ankle",
+               "feedback": "Correct, the procedure the patient needs to follow is correct"
+            },
+            {
+               "id": "3",
+               "correct": "true",
+               "body": "You should try doing this at home regularly when you have no activity",
+               "feedback": "Correct, suggesting to the patient do do this at home is a good idea"
+            },
+            {
+               "id": "4",
+               "correct": "false",
+               "body": "You should try flexing the leg back and forward at the knee",
+               "feedback": "False, bending the leg at the knee is not part of the exercise"
+            }
+         ]
+      },
+      {
+         "id": "12",
+         "prerequisites": [
+            2,
+            8
+         ],
+         "relevant": "true",
+         "type": "question",
+         "bodies": [
+            "I would recommend that you understand the specifics of your medical situation."
+         ],
+         "replies": [
+            "I would like to know more about my illness."
+         ],
+         "choices": [
+            {
+               "id": "0",
+               "correct": "true",
+               "body": "It's caused by accumulated blood in the legs",
+               "feedback": "Correct, it is caused by accumulated blood in the legs"
+            },
+            {
+               "id": "1",
+               "correct": "true",
+               "body": "Bad circulation is accentuated by the lack of exercise and muscle activity",
+               "feedback": "Correct, Bad circulation is accentuated by the lack of exercise and muscle activity"
+            },
+            {
+               "id": "2",
+               "correct": "true",
+               "body": "You need to exercise every day in order to avoid swollen legs",
+               "feedback": "Correct, the patient needs to exercise every day in order to avoid swollen legs"
+            }
+         ]
+      },
+      {
+         "id": "-2",
+         "prerequisites": [
+            12,
+            9,
+            7
+         ],
+         "relevant": "true",
+         "type": "action",
+         "bodies": [
+            "Peter if there is nothing else, i think we are done. Remember to follow my advice and if have more problems contact your doctor."
+         ],
+         "replies": [
+            "Thank you for seeing me today, I already feel much better."
+         ]
+      },
+      {
+         "id": "-3",
+         "prerequisites": [
+            8
+         ],
+         "relevant": "true",
+         "type": "inquiry",
+         "bodies": [
+            "Have you had oedema before?"
+         ],
+         "replies": [
+            "My legs usually gets a bit swollen in the evening, but never as much as now."
+         ]
+      },
+      {
+         "id": "-4",
+         "prerequisites": [
+            8
+         ],
+         "relevant": "true",
+         "type": "inquiry",
+         "bodies": [
+            "Are your legs swollen in the morning?"
+         ],
+         "replies": [
+            "No they are not swollen in the morning."
+         ]
+      },
+      {
+         "id": "-5",
+         "prerequisites": [
+            0
+         ],
+         "relevant": "true",
+         "type": "inquiry",
+         "bodies": [
+            "Do you eat sufficient?"
+         ],
+         "replies": [
+            "Yes i eat sufficient."
+         ]
+      },
+      {
+         "id": "-6",
+         "prerequisites": [],
+         "relevant": "true",
+         "type": "inquiry",
+         "bodies": [
+            "Do you need a stick or some kind of aid to get mobilized?"
+         ],
+         "replies": [
+            "Yes I have difficulty in walking on my own."
+         ]
+      },
+      {
+         "id": "-7",
+         "prerequisites": [
+            8
+         ],
+         "relevant": "true",
+         "type": "inquiry",
+         "bodies": [
+            "Do you use some kind of cream to keep your skin moist?"
+         ],
+         "replies": [
+            "No I am not using cream to keep my skin moist."
+         ]
+      },
+      {
+         "id": "-9",
+         "prerequisites": [
+            3
+         ],
+         "relevant": "true",
+         "type": "inquiry",
+         "bodies": [
+            "Do you have varices in your legs?"
+         ],
+         "replies": [
+            "Yes I have some varices on both legs."
+         ]
+      },
+      {
+         "id": "-10",
+         "prerequisites": [
+            3
+         ],
+         "relevant": "true",
+         "type": "inquiry",
+         "bodies": [
+            "Do you use support stockings?"
+         ],
+         "replies": [
+            "No I don’t use support stockings."
+         ]
+      },
+      {
+         "id": "-11",
+         "prerequisites": [
+            0,
+            9
+         ],
+         "relevant": "true",
+         "type": "inquiry",
+         "bodies": [
+            "Do you make vein pump exercises?"
+         ],
+         "replies": [
+            "No I don’t know what that is."
+         ]
+      },
+      {
+         "id": "-12",
+         "prerequisites": [
+            0,
+            9
+         ],
+         "relevant": "true",
+         "type": "inquiry",
+         "bodies": [
+            "Do you get any anticoagulant medicine?"
+         ],
+         "replies": [
+            "No not as far as I know but you will have to ask the nurse or the doctor."
+         ]
+      },
+      {
+         "id": "-13",
+         "prerequisites": [
+            8
+         ],
+         "relevant": "true",
+         "type": "inquiry",
+         "bodies": [
+            "How much do you drink per day?"
+         ],
+         "replies": [
+            "I drink arond one and a half liters per day"
+         ]
+      },
+      {
+         "id": "-14",
+         "prerequisites": [
+            0
+         ],
+         "relevant": "true",
+         "type": "inquiry",
+         "bodies": [
+            "Have you got any disease in your kidneys?"
+         ],
+         "replies": [
+            "No, my kidneys are healthy."
+         ]
+      },
+      {
+         "id": "-15",
+         "prerequisites": [
+            3
+         ],
+         "relevant": "true",
+         "type": "inquiry",
+         "bodies": [
+            "Are your legs red and warm?"
+         ],
+         "replies": [
+            "No they are not more red or warm than usual."
+         ]
+      },
+      {
+         "id": "-16",
+         "prerequisites": [
+            3
+         ],
+         "relevant": "true",
+         "type": "inquiry",
+         "bodies": [
+            "Are your heels hurting or sore??"
+         ],
+         "replies": [
+            "Yes my heels are sore and they hurt if I lay on them for to long."
+         ]
+      },
+      {
+         "id": "-17",
+         "prerequisites": [
+            3
+         ],
+         "relevant": "true",
+         "type": "inquiry",
+         "bodies": [
+            "For how long have you been sitting in this chair?"
+         ],
+         "replies": [
+            "I have been sitting in this chair for 10 minutes.",
+            "Around 10 minutes."
+         ]
+      },
+      {
+         "id": "-18",
+         "prerequisites": [
+            8
+         ],
+         "relevant": "true",
+         "type": "inquiry",
+         "bodies": [
+            "Are your legs pale and more cold than usual?"
+         ],
+         "replies": [
+            "No they are not more pale or cold than usual.",
+            "Not more than ususal."
+         ]
+      },
+      {
+         "id": "-19",
+         "prerequisites": [
+            8
+         ],
+         "relevant": "true",
+         "type": "inquiry",
+         "bodies": [
+            "Are you suffering from hypertension?"
+         ],
+         "replies": [
+            "No I am not suffering from hypertension."
+         ]
+      },
+      {
+         "id": "-20",
+         "prerequisites": [
+            0
+         ],
+         "relevant": "true",
+         "type": "inquiry",
+         "bodies": [
+            "Do you have any allergies?"
+         ],
+         "replies": [
+            "No I don’t have any allergies."
+         ]
+      },
+      {
+         "id": "-21",
+         "prerequisites": [
+            8
+         ],
+         "relevant": "true",
+         "type": "inquiry",
+         "bodies": [
+            "Have you discussed your oedemas with the nurse or the doctor?"
+         ],
+         "replies": [
+            "No I havnt discussed my oedemas with the muse or the doctor."
+         ]
+      },
+      {
+         "id": "-22",
+         "prerequisites": [
+            8
+         ],
+         "relevant": "true",
+         "type": "inquiry",
+         "bodies": [
+            "Have you had any blood test?"
+         ],
+         "replies": [
+            "Yes I had bloodtest done yesterday and they were fine. My serum-albumine was fine."
+         ]
+      }
+   ],
+   "reflection": [
+      {
+         "id": "0",
+         "body": "Peter tells you that he has heavy feet, feeling tight and his shoes are too tight especially in the evening. After you have examined Peter’s feet and legs can you explain his condition?",
+         "prerequisites": [
+         ],
+         "choices": [
+            {
+               "id": "0",
+               "correct": "false",
+               "body": "Peter has fat legs",
+               "feedback": "Peter is a very slim person, have a look again at his feet and legs – can you see the curve that is left long after you press your finger against his foot. Try again."
+            },
+            {
+               "id": "1",
+               "correct": "false",
+               "body": "Peter is tired and has lost muscle power",
+               "feedback": "Loss of muscle power and the fact that Peter is tired can contribute to the feeling of heavy feet. It does not explain the curve that you can see is left long after you press your finger against his foot. Try again."
+            },
+            {
+               "id": "2",
+               "correct": "true",
+               "body": "Peter has oedema.",
+               "feedback": "Yes, you are absolutely correct – Peter has oedema. Explain further why is Peter suffering from oedema. Explain in the box below. Your teacher will comment and asses your explanation.  "
+            }
+         ]
+      },
+      {
+         "id": "1",
+         "body": "You will be asked to reflect on your actions – remember to use theory from Anatomy, physiology, nursing theory etc. What did you do to help Peter with his oedema? (You can choose more than one answer)",
+         "prerequisites": [
+            0
+         ],
+         "choices": [
+            {
+               "id": "0",
+               "correct": "false",
+               "body": "I told Peter to go for a walk",
+               "feedback": "You are right that walking is helping to activate the vein pump, but Peter is short of breath right now and is not able to go for a walk right now – please try again"
+            },
+            {
+               "id": "1",
+               "correct": "true",
+               "body": "I helped Peter elevating his legs and feet",
+               "feedback": "Well done - you are right – elevating Peter’s legs and feet will help the oedema to get smaller. You gained 5 point – please gain another 10 points by explaining in the box below why this intervention helps Peter’s edemas to get smaller.  Your teacher will comment and asses your explanation."
+            },
+            {
+               "id": "2",
+               "correct": "true",
+               "body": "I helped Peter doing vein pump exercises.",
+               "feedback": "Well done - you are right – Doing vein pump exercises will help the oedema to get smaller. You gained 5 point – please gain another 10 points by explaining in the box below what you did and how this intervention helps Peter’s edemas to get smaller.  Your teacher will comment and asses your explanation."
+            },
+            {
+               "id": "3",
+               "correct": "true",
+               "body": "I instructed Peter in vein pump exercises.",
+               "feedback": "Well done - you are right – instruction Peter in why and how to do vein pump exercises will help the oedema to get smaller. You gained 5 point – please gain another 10 points by explaining in the box below why this intervention helps Peter’s edemas to get smaller.  Your teacher will comment and asses your explanation."
+            }
+         ]
+      }
+   ]
+}

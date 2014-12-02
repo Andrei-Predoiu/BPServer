@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import server.DataManipulator;
 import server.FreemarkerConfig;
-import server.model.Answer;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -23,13 +22,17 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import java.util.ArrayList;
+import server.Logger;
 import server.model.ClientQuestionOrAction;
+import server.model.QuizzAnswer;
+import server.model.ReflectionResponse;
+import server.model.serverKnowledge.ReflectionQuiz;
 
 /**
  * Servlet implementation class OrderServlet
  */
-@WebServlet(name = "Ask", urlPatterns = {"/ask"})
-public class Ask extends HttpServlet {
+@WebServlet(name = "AnswerReflection", urlPatterns = {"/reflection"})
+public class AnswerReflection extends HttpServlet {
 
    private static final long serialVersionUID = 1L;
    Gson gson = new GsonBuilder().create();
@@ -40,7 +43,7 @@ public class Ask extends HttpServlet {
    /**
     * @see HttpServlet#HttpServlet()
     */
-   public Ask() {
+   public AnswerReflection() {
       super();
    }
 
@@ -75,29 +78,34 @@ public class Ask extends HttpServlet {
 
          String r = request.getParameter("message");
          System.out.println(r);
-         Answer req = gson.fromJson(r, Answer.class);
-         r = gson.toJson(req);
-         System.out.println(r);
-         int id = req.getId();
+         ReflectionResponse req = gson.fromJson(r, ReflectionResponse.class);
+         int refId = req.getQuizId();
+         int choiceId = req.getChoiceId();
+         Template temp;
          /**
           * failsafe in case a question is asked before it should be possible
           */
-         if (!worker.canAnswerQoA(id)) {
-            id = -1;
+         if (!worker.canAnswerFeedback(refId, choiceId)) {
+            root.put("reply", "**empty**");
+            root.put("source", "teacherG");
+            root.put("quiz", new ReflectionQuiz());
+            /* Get the template */
+         } else {
+            Map<String, String> results = worker.getReflectionFeedback(refId, choiceId, req.getFollowUp());
+            root.put("reply", results.get("feedback"));
+
+            switch (results.get("correct")) {
+               case ("true"):
+                  root.put("source", "teacherG");
+                  break;
+               case ("false"):
+                  root.put("source", "teacherR");
+                  break;
+            }
+            ReflectionQuiz x = worker.processReflection(refId, choiceId);
+            root.put("quiz", x);
          }
-         ArrayList<ClientQuestionOrAction> x = worker.buildResonse(id);
-         System.out.println("Printing responses");
-         x.stream().forEach((ClientQuestionOrAction y) -> {
-            System.out.println(y.getId());
-         });
-
-         root.put("id", id);
-         root.put("reply", worker.getReply(id));
-         root.put("source", "patient");
-         root.put("variants", x);
-         /* Get the template */
-         Template temp = cfg.getTemplate("qaListResponse.ftl");
-
+         temp = cfg.getTemplate("feedbackResponse.ftl");
          /* Merge data-model with template */
          try {
             temp.process(root, writer);
