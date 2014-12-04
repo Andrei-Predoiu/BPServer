@@ -106,7 +106,7 @@ public class AnswerQuizz extends HttpServlet {
                   break;
             }
          }
-         ArrayList<ClientQuestionOrAction> x = worker.buildResonse(id);
+         ArrayList<ClientQuestionOrAction> x = worker.buildResonse(id, false);
          root.put("variants", x);
          temp = cfg.getTemplate("qaListResponse.ftl");
          /* Merge data-model with template */

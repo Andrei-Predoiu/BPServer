@@ -4,6 +4,7 @@
          "id": "0",
          "prerequisites": [],
          "relevant": "true",
+         "category": "mobility",
          "type": "inquiry",
          "bodies": [
             "Hello my name is ... .I am a nurse student. How are you today?",
@@ -23,6 +24,7 @@
             0
          ],
          "relevant": "true",
+         "category": "mobility",
          "type": "inquiry",
          "bodies": [
             "Is it something new that your legs get heavy?",
@@ -39,6 +41,7 @@
             1
          ],
          "relevant": "true",
+         "category": "mobility",
          "type": "inquiry",
          "bodies": [
             "Do you have any pain in your feet or legs? ",
@@ -72,6 +75,7 @@
             0
          ],
          "relevant": "true",
+         "category": "mobility",
          "type": "inquiry",
          "bodies": [
             "Have you had any activity today?",
@@ -87,6 +91,7 @@
             1
          ],
          "relevant": "true",
+         "category": "notMobility",
          "type": "inquiry",
          "bodies": [
             "Could you go for a walk with me now?"
@@ -315,7 +320,7 @@
             "Do you use support stockings?"
          ],
          "replies": [
-            "No I don’t use support stockings."
+            "No I don't use support stockings."
          ]
       },
       {
@@ -330,7 +335,7 @@
             "Do you make vein pump exercises?"
          ],
          "replies": [
-            "No I don’t know what that is."
+            "No I don't know what that is."
          ]
       },
       {
@@ -459,7 +464,7 @@
             "Do you have any allergies?"
          ],
          "replies": [
-            "No I don’t have any allergies."
+            "No I don't have any allergies."
          ]
       },
       {
@@ -494,15 +499,14 @@
    "reflection": [
       {
          "id": "0",
-         "body": "Peter tells you that he has heavy feet, feeling tight and his shoes are too tight especially in the evening. After you have examined Peter’s feet and legs can you explain his condition?",
-         "prerequisites": [
-         ],
+         "body": "Peter tells you that he has heavy feet, feeling tight and his shoes are too tight especially in the evening. After you have examined Peter's feet and legs can you explain his condition?",
+         "category": "mobility",
          "choices": [
             {
                "id": "0",
                "correct": "false",
                "body": "Peter has fat legs",
-               "feedback": "Peter is a very slim person, have a look again at his feet and legs – can you see the curve that is left long after you press your finger against his foot. Try again."
+               "feedback": "Peter is a very slim person, have a look again at his feet and legs - can you see the curve that is left long after you press your finger against his foot. Try again."
             },
             {
                "id": "1",
@@ -514,40 +518,88 @@
                "id": "2",
                "correct": "true",
                "body": "Peter has oedema.",
-               "feedback": "Yes, you are absolutely correct – Peter has oedema. Explain further why is Peter suffering from oedema. Explain in the box below. Your teacher will comment and asses your explanation.  "
+               "feedback": "Yes, you are absolutely correct - Peter has oedema. Explain further why is Peter suffering from oedema. Explain in the box below. Your teacher will comment and asses your explanation.  "
             }
          ]
       },
       {
          "id": "1",
-         "body": "You will be asked to reflect on your actions – remember to use theory from Anatomy, physiology, nursing theory etc. What did you do to help Peter with his oedema? (You can choose more than one answer)",
-         "prerequisites": [
-            0
-         ],
+         "body": "You will be asked to reflect on your actions - remember to use theory from Anatomy, physiology, nursing theory etc. What did you do to help Peter with his oedema?",
+         "category": "mobility",
          "choices": [
             {
                "id": "0",
                "correct": "false",
                "body": "I told Peter to go for a walk",
-               "feedback": "You are right that walking is helping to activate the vein pump, but Peter is short of breath right now and is not able to go for a walk right now – please try again"
+               "feedback": "You are right that walking is helping to activate the vein pump, but Peter is short of breath right now and is not able to go for a walk right now - please try again"
             },
             {
                "id": "1",
                "correct": "true",
                "body": "I helped Peter elevating his legs and feet",
-               "feedback": "Well done - you are right – elevating Peter’s legs and feet will help the oedema to get smaller. You gained 5 point – please gain another 10 points by explaining in the box below why this intervention helps Peter’s edemas to get smaller.  Your teacher will comment and asses your explanation."
+               "feedback": "Well done - you are right - elevating Peter's legs and feet will help the oedema to get smaller. You gained 5 point - please gain another 10 points by explaining in the box below why this intervention helps Peter's edemas to get smaller.  Your teacher will comment and asses your explanation."
             },
             {
                "id": "2",
                "correct": "true",
                "body": "I helped Peter doing vein pump exercises.",
-               "feedback": "Well done - you are right – Doing vein pump exercises will help the oedema to get smaller. You gained 5 point – please gain another 10 points by explaining in the box below what you did and how this intervention helps Peter’s edemas to get smaller.  Your teacher will comment and asses your explanation."
+               "feedback": "Well done - you are right - Doing vein pump exercises will help the oedema to get smaller. You gained 5 point - please gain another 10 points by explaining in the box below what you did and how this intervention helps Peter's edemas to get smaller.  Your teacher will comment and asses your explanation."
             },
             {
                "id": "3",
                "correct": "true",
                "body": "I instructed Peter in vein pump exercises.",
-               "feedback": "Well done - you are right – instruction Peter in why and how to do vein pump exercises will help the oedema to get smaller. You gained 5 point – please gain another 10 points by explaining in the box below why this intervention helps Peter’s edemas to get smaller.  Your teacher will comment and asses your explanation."
+               "feedback": "Well done - you are right - instruction Peter in why and how to do vein pump exercises will help the oedema to get smaller. You gained 5 point - please gain another 10 points by explaining in the box below why this intervention helps Peter's edemas to get smaller.  Your teacher will comment and asses your explanation."
+            }
+         ]
+      },
+      {
+         "id": "2",
+         "body": "You were asked to instruct Peter in vein pump exercises. Why do you think that is important?",
+         "category": "mobility",
+         "choices": [
+            {
+               "id": "0",
+               "correct": "true",
+               "body": "It can urge Peter to elevate his feet when he is sitting in the chair and do vein pump exercises on his own.",
+               "feedback": "Well done you are right. You gained 5 points - please gain another 10 points by explaining in the box below why this intervention could urge Peter to elevate his feet and do vein pump exercises - you might find it helpful to use Henderson or Orem's theory about basic conditioning factors or Henderson's need theory."
+            },
+            {
+               "id": "1",
+               "correct": "true",
+               "body": "It might give Peter the experience that he can do something to affect his condition.",
+               "feedback": "Yes, you are right. You gained 5 points - please gain another 10 points by explaining in the box below why you think it is important to give Peter the experience that he can do something to affect his condition. You might find it useful to use different approaches on disease and health."
+            }
+         ]
+      },
+      {
+         "id": "3",
+         "body": "As you were collecting data, did you notice the skin on Peter's feet?",
+         "category": "mobility",
+         "choices": [
+            {
+               "id": "0",
+               "correct": "false",
+               "body": "I noticed that the skin was intact, so there is no worry.",
+               "feedback": "Yes the skin is intact on the upper foot - but does that mean that the we don't have to worry - have a second look at Peter's feet."
+            },
+            {
+               "id": "1",
+               "correct": "true",
+               "body": "I noticed a red area at his heel.",
+               "feedback": "Yes the skin on Peters heels are slight red. You have gained 5 points - please gain another 10 points by explaining in the box below which interventions you will plan."
+            },
+            {
+               "id": "2",
+               "correct": "true",
+               "body": "I noticed that the skin was dry",
+               "feedback": "Yes the skin on Peters feet is dry. You have gained 5 points - please gain another 10 points by explaining in the box below which interventions you will plan."
+            },
+            {
+               "id": "3",
+               "correct": "true",
+               "body": "I noticed other things",
+               "feedback": "Well done you are very observant. You have gained 5 points - please gain another 10 points by explaining in the box below what you have observed and which interventions you will plan."
             }
          ]
       }

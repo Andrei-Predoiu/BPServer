@@ -11,27 +11,27 @@ import java.util.ArrayList;
  *
  * @author 2Xmatch
  */
-public class QuizTracker {
+public class ReflectionTracker {
 
    private int quizID;
    private ArrayList<Integer> choices;
+   private boolean completed = false;
 
-   public QuizTracker(int quizID, ArrayList<Integer> choices) {
+   public boolean isCompleted() {
+      return completed;
+   }
+
+   public void setCompleted(boolean completed) {
+      this.completed = completed;
+   }
+
+   public ReflectionTracker(int quizID, ArrayList<Integer> choices) {
       choices = new ArrayList<>();
       this.quizID = quizID;
       this.choices = choices;
    }
 
-   public QuizTracker(ArrayList<Choice> choices, int quizID) {
-      choices = new ArrayList<>();
-      this.quizID = quizID;
-      for (Choice c : choices) {
-         this.choices.add(c.getId());
-      }
-
-   }
-
-   public QuizTracker(int quizID) {
+   public ReflectionTracker(int quizID) {
       choices = new ArrayList<>();
       this.quizID = quizID;
    }

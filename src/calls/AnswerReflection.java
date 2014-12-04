@@ -21,10 +21,6 @@ import com.google.gson.GsonBuilder;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-import java.util.ArrayList;
-import server.Logger;
-import server.model.ClientQuestionOrAction;
-import server.model.QuizzAnswer;
 import server.model.ReflectionResponse;
 import server.model.serverKnowledge.ReflectionQuiz;
 
@@ -85,26 +81,21 @@ public class AnswerReflection extends HttpServlet {
          /**
           * failsafe in case a question is asked before it should be possible
           */
-         if (!worker.canAnswerFeedback(refId, choiceId)) {
-            root.put("reply", "**empty**");
-            root.put("source", "teacherG");
-            root.put("quiz", new ReflectionQuiz());
-            /* Get the template */
-         } else {
-            Map<String, String> results = worker.getReflectionFeedback(refId, choiceId, req.getFollowUp());
-            root.put("reply", results.get("feedback"));
 
-            switch (results.get("correct")) {
-               case ("true"):
-                  root.put("source", "teacherG");
-                  break;
-               case ("false"):
-                  root.put("source", "teacherR");
-                  break;
-            }
-            ReflectionQuiz x = worker.processReflection(refId, choiceId);
-            root.put("quiz", x);
+         Map<String, String> results = worker.getReflectionFeedback(refId, choiceId, req.getFollowUp());
+         root.put("reply", results.get("feedback"));
+
+         switch (results.get("correct")) {
+            case ("true"):
+               root.put("source", "teacherG");
+               break;
+            case ("false"):
+               root.put("source", "teacherR");
+               break;
          }
+         ReflectionQuiz x = worker.processReflection(refId, choiceId);
+         root.put("quiz", x);
+
          temp = cfg.getTemplate("feedbackResponse.ftl");
          /* Merge data-model with template */
          try {

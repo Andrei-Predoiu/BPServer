@@ -8,6 +8,7 @@ public class QuestionOrAction {
    private final ArrayList<Integer> prerequisites;
    private final boolean relevant;
    private final String type;
+   private final String category;
    private final ArrayList<String> bodies;
    private final ArrayList<String> replies;
    private final ArrayList<Choice> choices;
@@ -17,9 +18,14 @@ public class QuestionOrAction {
       this.prerequisites = new ArrayList<>();
       this.relevant = false;
       this.type = "none";
+      this.category = null;
       this.bodies = new ArrayList<>();
       this.replies = new ArrayList<>();
       this.choices = new ArrayList<>();
+   }
+
+   public String getCategory() {
+      return category;
    }
 
    public int getId() {

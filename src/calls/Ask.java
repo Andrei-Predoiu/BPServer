@@ -85,7 +85,7 @@ public class Ask extends HttpServlet {
          if (!worker.canAnswerQoA(id)) {
             id = -1;
          }
-         ArrayList<ClientQuestionOrAction> x = worker.buildResonse(id);
+         ArrayList<ClientQuestionOrAction> x = worker.buildResonse(id, true);
          System.out.println("Printing responses");
          x.stream().forEach((ClientQuestionOrAction y) -> {
             System.out.println(y.getId());

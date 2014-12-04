@@ -34,21 +34,25 @@ public class ReflectionQuiz implements Serializable {
 
    private int id;
    private String body;
-   private ArrayList<Integer> prerequisites;
+   private String category;
    private ArrayList<Choice> choices;
 
-   public ReflectionQuiz(int id, String body, ArrayList<Choice> choices, ArrayList<Integer> prerequisites) {
+   public ReflectionQuiz(int id, String body, ArrayList<Choice> choices, String category) {
       this.id = id;
       this.body = body;
       this.choices = choices;
-      this.prerequisites = prerequisites;
+      this.category = category;
    }
 
    public ReflectionQuiz() {
       this.id = -1;
       this.body = "**empty**";
       this.choices = new ArrayList<>();
-      this.prerequisites = new ArrayList<>();
+      this.category = null;
+   }
+
+   public String getCategory() {
+      return category;
    }
 
    public void addChoice(Choice choice) {
@@ -77,10 +81,6 @@ public class ReflectionQuiz implements Serializable {
 
    public void setChoices(ArrayList<Choice> choices) {
       this.choices = choices;
-   }
-
-   public ArrayList<Integer> getPrerequisites() {
-      return prerequisites;
    }
 
 }
